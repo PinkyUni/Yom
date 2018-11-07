@@ -1,6 +1,7 @@
 package com.yom;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,11 +17,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private List<Recipe> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private static Typeface typefaceRegular, typefaceMedium, typefaceBold;
 
     // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<Recipe> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        typefaceRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Regular.ttf");
+        typefaceMedium = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Medium.ttf");
+        typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Bold.ttf");
     }
 
     // inflates the row layout from xml when needed
@@ -55,6 +60,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             super(itemView);
             myImageView = itemView.findViewById(R.id.img_recipe);
             myTextView = itemView.findViewById(R.id.txt_recipe);
+            myTextView.setTypeface(typefaceMedium);
             itemView.setOnClickListener(this);
         }
 
