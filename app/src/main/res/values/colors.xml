@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="colorTxtBackground">#60292929</color>
+    <color name="colorTxtBackGrey">#90292929</color>
+    <color name="colorTxtBackBlack">#ad000000</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>
