@@ -1,8 +1,6 @@
 package com.yom;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +10,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.yom.MainActivity.typefaceMedium;
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private List<Recipe> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    private static Typeface typefaceRegular, typefaceMedium, typefaceBold;
 
     // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, List<Recipe> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-        typefaceRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Regular.ttf");
-        typefaceMedium = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Medium.ttf");
-        typefaceBold = Typeface.createFromAsset(context.getAssets(), "fonts/Podkova-Bold.ttf");
     }
 
     // inflates the row layout from xml when needed
@@ -39,7 +35,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Recipe recipe = mData.get(position);
-//        String animal = mData.get(position);
         holder.myTextView.setText(recipe.getName());
         holder.myImageView.setImageDrawable(recipe.getImg());
     }

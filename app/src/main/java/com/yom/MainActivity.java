@@ -1,17 +1,16 @@
 package com.yom;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,13 +22,15 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
     MyRecyclerViewAdapter adapter;
     private DrawerLayout mDrawerLayout;
-    private static Typeface typefaceMedium;
+    public static Typeface typefaceRegular, typefaceMedium, typefaceBold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        typefaceRegular = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Regular.ttf");
         typefaceMedium = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Medium.ttf");
+        typefaceBold = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Bold.ttf");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
         TextView textView = (TextView) toolbar.getChildAt(0);
-        textView.setTypeface(typefaceMedium);
+        textView.setTypeface(typefaceBold);
         textView.setTextSize(24);
 
         ArrayList<Recipe> recipeBook = new ArrayList<>();
@@ -102,6 +103,16 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                     }
                 }
         );
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
