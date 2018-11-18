@@ -2,4 +2,13 @@
     <string name="app_name">Yom</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="person_name">PinkyUni</string>
+    
+    <string name="txt_recipes">Рецепты</string>
+    <string name="txt_search_recipe">Подбор блюда</string>
+    <string name="txt_favourite">Избранное</string>
+
+    <string name="txt_my_recipes">Мои рецепты</string>
+    <string name="txt_add_recipe">Добавить рецепт</string>
+
 </resources>

@@ -2,25 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single"
         android:id="@+id/group_1">
+
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_av_timer"
-            android:title="Puk" />
+            android:id="@+id/nav_recipes"
+            android:icon="@drawable/ic_apps_24dp"
+            android:title="@string/txt_recipes" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_av_timer"
-            android:title="Kek" />
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_24dp"
+            android:title="@string/txt_search_recipe" />
+
     </group>
 
     <group android:checkableBehavior="single"
         android:id="@+id/group_2">
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_av_timer"
-            android:title="Piu" />
+            android:id="@+id/nav_my_recipes"
+            android:icon="@drawable/ic_dining_24dp"
+            android:title="@string/txt_my_recipes" />
+
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_av_timer"
-            android:title="Blo" />
+            android:id="@+id/nav_favourite"
+            android:icon="@drawable/ic_favorite_24dp"
+            android:title="@string/txt_favourite" />
+
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add_24dp"
+            android:title="@string/txt_add_recipe" />
+
     </group>
 </menu>

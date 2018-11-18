@@ -1,11 +1,11 @@
 package com.yom;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,18 +42,21 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         textView.setTypeface(typefaceBold);
         textView.setTextSize(24);
 
-        ArrayList<Recipe> recipeBook = new ArrayList<>();
-        recipeBook.add(new Recipe("Cupcake", getResources().getDrawable(R.drawable.img_cake)));
-        recipeBook.add(new Recipe("Cake", getResources().getDrawable(R.drawable.cake)));
-        recipeBook.add(new Recipe("Cherry cake", getResources().getDrawable(R.drawable.cherry_cake)));
-        recipeBook.add(new Recipe("Cookies", getResources().getDrawable(R.drawable.cookies)));
-        recipeBook.add(new Recipe("Fruits", getResources().getDrawable(R.drawable.plums)));
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView personName = headerView.findViewById(R.id.txt_person);
+        personName.setText(R.string.person_name);
+        personName.setTypeface(typefaceBold);
 
-        recipeBook.add(new Recipe("Pancakes", getResources().getDrawable(R.drawable.pancakes)));
-        recipeBook.add(new Recipe("Berries", getResources().getDrawable(R.drawable.berries)));
-        recipeBook.add(new Recipe("Cake", getResources().getDrawable(R.drawable.cake)));
-        recipeBook.add(new Recipe("Chocolate", getResources().getDrawable(R.drawable.choco)));
-        recipeBook.add(new Recipe("Croissant", getResources().getDrawable(R.drawable.croissant)));
+        ArrayList<Recipe> recipeBook = new ArrayList<>();
+
+        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes)));
+        recipeBook.add(new Recipe("Пирожные", getResources().getDrawable(R.drawable.brownies)));
+        recipeBook.add(new Recipe("Печенье", getResources().getDrawable(R.drawable.cookies)));
+        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes)));
+        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.maffins)));
+        recipeBook.add(new Recipe("Пироги", getResources().getDrawable(R.drawable.pies)));
+        recipeBook.add(new Recipe("Вафли", getResources().getDrawable(R.drawable.waffels)));
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.Recipes);
@@ -61,9 +65,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setHasFixedSize(true);
+
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
