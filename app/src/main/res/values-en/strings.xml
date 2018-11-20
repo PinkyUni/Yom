@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Yom</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="person_name">PinkyUni</string>
+
+    <string name="txt_recipes">Recipes</string>
+    <string name="txt_search_recipe">Search a recipe</string>
+    <string name="txt_favourite">Favourites</string>
+
+    <string name="txt_my_recipes">My recipes</string>
+    <string name="txt_add_recipe">Add recipe</string>
+
+    <string name="txt_settings">Settings</string>
+    <string name="txt_about">About program</string>
+</resources>
