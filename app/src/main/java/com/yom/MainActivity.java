@@ -19,11 +19,27 @@ import android.widget.TextView;
 
 import com.yom.databinding.ActivityMainBinding;
 
+import fragments.AboutFragment;
+import fragments.AddFragment;
+import fragments.AllRecipesFragment;
+import fragments.FavouriteFragment;
+import fragments.MyRecipesFragment;
+import fragments.SearchFragment;
+import fragments.SettingsFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel mainViewModel;
+
     public FragmentTransaction fragmentTransaction;
     public AllRecipesFragment allRecipesFragment;
+    public SettingsFragment settingsFragment;
+    public AboutFragment aboutFragment;
+    public AddFragment addFragment;
+    public MyRecipesFragment myRecipesFragment;
+    public SearchFragment searchFragment;
+    public FavouriteFragment favouriteFragment;
+
     private DrawerLayout mDrawerLayout;
     public Toolbar toolbar;
     public static Typeface typefaceRegular, typefaceMedium, typefaceBold;
@@ -33,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         allRecipesFragment = new AllRecipesFragment();
+
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.content_frame, allRecipesFragment);
         fragmentTransaction.commit();
@@ -76,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
+                        mainViewModel.setFragmentNumber(menuItem.getItemId());
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
@@ -125,6 +143,36 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 fragmentTransaction.replace(R.id.content_frame, allRecipesFragment);
                 toolbarTxt.setText(getResources().getString(R.string.app_name));
+                break;
+            case 2:
+                searchFragment = new SearchFragment();
+                fragmentTransaction.replace(R.id.content_frame, searchFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_search_recipe));
+                break;
+            case 3:
+                myRecipesFragment = new MyRecipesFragment();
+                fragmentTransaction.replace(R.id.content_frame, myRecipesFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_my_recipes));
+                break;
+            case 4:
+                favouriteFragment = new FavouriteFragment();
+                fragmentTransaction.replace(R.id.content_frame, favouriteFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_favourite));
+                break;
+            case 5:
+                addFragment = new AddFragment();
+                fragmentTransaction.replace(R.id.content_frame, addFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_add_recipe));
+                break;
+            case 6:
+                settingsFragment = new SettingsFragment();
+                fragmentTransaction.replace(R.id.content_frame, settingsFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_settings));
+                break;
+            case 7:
+                aboutFragment = new AboutFragment();
+                fragmentTransaction.replace(R.id.content_frame, aboutFragment);
+                toolbarTxt.setText(getResources().getString(R.string.txt_about));
                 break;
         }
         fragmentTransaction.commit();

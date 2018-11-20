@@ -1,4 +1,4 @@
-package com.yom;
+package fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.yom.MainViewModel;
+import com.yom.MyRecyclerViewAdapter;
+import com.yom.R;
+import com.yom.Recipe;
 
 import java.util.ArrayList;
 
