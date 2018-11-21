@@ -15,4 +15,8 @@
     <string name="txt_about">About program</string>
 
     <string name="txt_faves_empty">Here will be the list of your favourite recipes</string>
+
+
+    <string name="cake_napoleon">Napoleon</string>
+    <string name="cake_graph_ruins">Graph ruins</string>
 </resources>
