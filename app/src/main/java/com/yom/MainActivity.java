@@ -12,12 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yom.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 import fragments.AboutFragment;
 import fragments.AddFragment;
@@ -192,9 +197,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
+                if (getSupportActionBar().getTitle().equals(getResources().getString(R.string.app_name))) {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                } else {
+                    allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

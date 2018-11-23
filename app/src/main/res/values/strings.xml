@@ -16,7 +16,7 @@
 
     <string name="txt_faves_empty">Здесь будет список Ваших любимых рецептов</string>
 
-
+    <string name="title_cakes">Торты</string>
     <string name="cake_napoleon">Наполеон</string>
     <string name="cake_graph_ruins">Графские развалины</string>
 </resources>

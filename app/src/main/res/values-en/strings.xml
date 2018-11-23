@@ -16,7 +16,7 @@
 
     <string name="txt_faves_empty">Here will be the list of your favourite recipes</string>
 
-
+    <string name="title_cakes">Cakes</string>
     <string name="cake_napoleon">Napoleon</string>
     <string name="cake_graph_ruins">Graph ruins</string>
 </resources>
