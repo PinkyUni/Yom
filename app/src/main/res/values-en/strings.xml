@@ -19,4 +19,16 @@
     <string name="title_cakes">Cakes</string>
     <string name="cake_napoleon">Napoleon</string>
     <string name="cake_graph_ruins">Graph ruins</string>
+
+    <string name="title_brownies">Brownies</string>
+
+    <string name="title_cookies">Cookies</string>
+
+    <string name="title_pancakes">Pancakes</string>
+
+    <string name="title_pies">Pies</string>
+
+    <string name="title_waffles">Waffles</string>
+
+    <string name="title_muffins">Muffins</string>
 </resources>

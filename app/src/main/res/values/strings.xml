@@ -19,4 +19,16 @@
     <string name="title_cakes">Торты</string>
     <string name="cake_napoleon">Наполеон</string>
     <string name="cake_graph_ruins">Графские развалины</string>
+
+    <string name="title_brownies">Пирожные</string>
+
+    <string name="title_cookies">Печенье</string>
+
+    <string name="title_pancakes">Блины</string>
+
+    <string name="title_pies">Пироги</string>
+
+    <string name="title_waffles">Вафли</string>
+
+    <string name="title_muffins">Маффины</string>
 </resources>
