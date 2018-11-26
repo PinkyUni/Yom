@@ -12,17 +12,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yom.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 
 import fragments.AboutFragment;
 import fragments.AddFragment;
@@ -55,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         allRecipesFragment = new AllRecipesFragment();
 
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.content_frame, allRecipesFragment);
-        fragmentTransaction.commit();
+//        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.content_frame, allRecipesFragment);
+//        fragmentTransaction.commit();
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -81,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) toolbar.getChildAt(0);
         textView.setTypeface(typefaceBold);
         textView.setTextSize(24);
-
+//
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView personName = headerView.findViewById(R.id.txt_person);
@@ -200,11 +196,22 @@ public class MainActivity extends AppCompatActivity {
                 if (getSupportActionBar().getTitle().equals(getResources().getString(R.string.app_name))) {
                     mDrawerLayout.openDrawer(GravityCompat.START);
                 } else {
-                    allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+                    if (getSupportActionBar().getTitle().equals(getResources().getString(R.string.title_cakes))) {
+                        allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentFragmentId());
+                        allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+                    } else {
+                        onBackPressed();
+                    }
+                    return true;
                 }
-                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
+        return true;
     }
 
 }

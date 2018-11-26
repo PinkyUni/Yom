@@ -31,4 +31,7 @@
     <string name="title_waffles">Waffles</string>
 
     <string name="title_muffins">Muffins</string>
+
+
+    <string name="txt_ingredients">   Ingredients</string>
 </resources>

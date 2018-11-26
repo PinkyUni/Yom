@@ -23,14 +23,19 @@ import java.util.ArrayList;
 public class AllRecipesFragment extends Fragment {
 
     public FragmentTransaction fragmentTransaction;
-    public MainViewModel mainViewModel;
     private MyRecyclerViewAdapter mainAdapter, adapter;
     private ArrayList<Recipe> recipeBook, cakeRecipes, brownieRecipes, cookieRecipes, pancakeRecipes, pieRecipes, waffleRecipes, muffinRecipes;
     private RecyclerView recyclerView;
+    private ActionBar actionbar;
+
+    private int currentRecipe;
+    private int currentFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionbar = ((MainActivity) getActivity()).getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
 
         recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes)));
@@ -46,6 +51,22 @@ public class AllRecipesFragment extends Fragment {
         return recipeBook;
     }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public FragmentTransaction getFragmentTransaction() {
+        return fragmentTransaction;
+    }
+
+    public int getCurrentFragmentId() {
+        return currentFragment;
+    }
+
+    public int getCurrentRecipe() {
+        return currentRecipe;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +77,7 @@ public class AllRecipesFragment extends Fragment {
         mainAdapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                currentFragment = position;
                 switch (position) {
                     case 0:
                         cakeRecipes = new ArrayList<>();
@@ -108,8 +130,8 @@ public class AllRecipesFragment extends Fragment {
     }
 
     public void onChangeArrayList(ArrayList<Recipe> arrayList, String title) {
-        ActionBar actionbar = ((MainActivity) getActivity()).getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
+
+
         actionbar.setTitle(title);
         if (title.equals(getResources().getString(R.string.app_name))) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -120,7 +142,14 @@ public class AllRecipesFragment extends Fragment {
             adapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    Toast.makeText(getActivity(), "You clicked " + adapter.getItemName(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+                    currentRecipe = position;
+//                    Toast.makeText(getActivity(), "You clicked " + adapter.getItemName(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+                    RecipeFragment recipeFragment = new RecipeFragment();
+                    actionbar.setTitle(adapter.getItemName(position));
+                    fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.content_frame, recipeFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             });
             recyclerView.setAdapter(adapter);

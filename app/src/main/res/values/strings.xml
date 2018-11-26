@@ -31,4 +31,8 @@
     <string name="title_waffles">Вафли</string>
 
     <string name="title_muffins">Маффины</string>
+
+
+
+    <string name="txt_ingredients">   Ингредиенты</string>
 </resources>
