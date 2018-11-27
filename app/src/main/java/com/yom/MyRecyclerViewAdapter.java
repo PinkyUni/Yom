@@ -72,6 +72,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return mData.get(id).getName();
     }
 
+    public Recipe getItem(int position) {
+        return mData.get(position);
+    }
+
     // allows clicks events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;

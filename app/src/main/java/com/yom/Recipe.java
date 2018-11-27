@@ -22,6 +22,14 @@ public class Recipe {
         this.cookingSteps = cookingSteps;
     }
 
+    public ArrayList<Ingredient> getIngredients() {
+        return this.ingregients;
+    }
+
+    public ArrayList<String> getCookingSteps() {
+        return this.cookingSteps;
+    }
+
     public String getName() {
         return this.name;
     }

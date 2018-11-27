@@ -10,10 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.yom.Ingredient;
 import com.yom.MainActivity;
-import com.yom.MainViewModel;
 import com.yom.MyRecyclerViewAdapter;
 import com.yom.R;
 import com.yom.Recipe;
@@ -37,14 +36,24 @@ public class AllRecipesFragment extends Fragment {
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
+        ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
+        ingredientArrayList.add(new Ingredient("milk", 2));
+        ingredientArrayList.add(new Ingredient("eggs", 4));
+        ArrayList<String> stepsArrayList = new ArrayList<>();
+        stepsArrayList.add("mix all");
+        stepsArrayList.add("DONE!");
+        recipeBook.add(new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList));
 
-        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes)));
+        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes_dark)));
+        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
+        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
+
         recipeBook.add(new Recipe("Пирожные", getResources().getDrawable(R.drawable.brownies)));
         recipeBook.add(new Recipe("Печенье", getResources().getDrawable(R.drawable.cookies)));
-        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes)));
+        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
         recipeBook.add(new Recipe("Пироги", getResources().getDrawable(R.drawable.pies)));
         recipeBook.add(new Recipe("Вафли", getResources().getDrawable(R.drawable.waffles)));
-        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins)));
+        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
     }
 
     public ArrayList<Recipe> getRecipeBook() {
@@ -130,8 +139,6 @@ public class AllRecipesFragment extends Fragment {
     }
 
     public void onChangeArrayList(ArrayList<Recipe> arrayList, String title) {
-
-
         actionbar.setTitle(title);
         if (title.equals(getResources().getString(R.string.app_name))) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -144,7 +151,16 @@ public class AllRecipesFragment extends Fragment {
                 public void onItemClick(View view, int position) {
                     currentRecipe = position;
 //                    Toast.makeText(getActivity(), "You clicked " + adapter.getItemName(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+//                    ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
+//                    ingredientArrayList.add(new Ingredient("milk", 2));
+//                    ingredientArrayList.add(new Ingredient("eggs", 4));
+//                    ArrayList<String> stepsArrayList = new ArrayList<>();
+//                    stepsArrayList.add("mix all");
+//                    stepsArrayList.add("DONE!");
+                    Recipe recipe = adapter.getItem(position);
+//                    Recipe recipe = new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList);
                     RecipeFragment recipeFragment = new RecipeFragment();
+                    recipeFragment.setRecipe(recipe);
                     actionbar.setTitle(adapter.getItemName(position));
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.content_frame, recipeFragment);

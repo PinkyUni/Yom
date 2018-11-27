@@ -4,130 +4,204 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="332dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/title_brownies"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cakes" >
-        </ImageView>
+            android:layout_height="358dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignBottom="@+id/img"
-            android:background="@drawable/card_view_text_background" />
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/title_brownies"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cakes_dark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignBottom="@+id/img"
+                android:background="@drawable/shadow"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img"
+                android:background="@color/colorAccentLight"
                 android:elevation="2dp"
-                android:background="@color/colorPrimaryDark"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
                 android:paddingStart="14dp"
                 android:paddingLeft="14dp"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:orientation="vertical">
+                android:paddingEnd="14dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="8dp">
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="Napoleon"
                     android:textColor="@color/colorWhite"
                     android:textSize="22sp" />
-                <TextView
-                    android:id="@+id/time"
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorWhite" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:drawableLeft="@drawable/ic_time_24dp"
-                    android:text="Time"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ic_time_24dp"
+                        android:text="1 h"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/cal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ic_time_24dp"
+                        android:text="1h"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/lvl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@drawable/ic_time_24dp"
+                        android:text="1 hour"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="54dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_favorite_24dp"
-            app:backgroundTint="@color/colorAccent" />
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="76dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_favorite_24dp"
+                app:backgroundTint="@color/colorAccent" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:paddingStart="10dp"
-            android:paddingLeft="10dp"
-            android:orientation="vertical">
+            android:layout_margin="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="4dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/title_brownies"
-                    android:src="@drawable/ic_shopping_basket_24dp"/>
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/title_ingredients"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_ingredients"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Ingredients"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorTxtBackGrey"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/ingredient_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:lines="5"
+                    android:textSize="16sp" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/ingredient_list"
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:lineSpacingExtra="4dp"
-                android:lines="5" />
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp">
 
+                <TextView
+                    android:id="@+id/title_cooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:textAllCaps="true"
+                    android:text="Cooking"
+                    android:textColor="@color/colorTxtBackGrey"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/cooking_steps_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:lines="5"
+                    android:textSize="16sp" />
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-
-</LinearLayout>
+    </LinearLayout>
 
 </ScrollView>
