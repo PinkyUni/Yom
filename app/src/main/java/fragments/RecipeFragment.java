@@ -30,11 +30,6 @@ public class RecipeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         typefaceJura = Typeface.createFromAsset(getActivity().getAssets(), "fonts/v.ttf");
-//        ingredients = new ArrayList<>();
-//        ingredients.add(new Ingredient("hz", 3));
-//        ingredients.add(new Ingredient("escho shto ta", 13));
-//        cookingSteps = new ArrayList<>();
-//        cookingSteps.add("mix all");
     }
 
     public void setRecipe(Recipe recipe) {

@@ -10,11 +10,6 @@ public class Recipe {
     private ArrayList<Ingredient> ingregients;
     private ArrayList<String> cookingSteps;
 
-    public Recipe(String name, Drawable img) {
-        this.name = name;
-        this.img = img;
-    }
-
     public Recipe(String name, Drawable img, ArrayList<Ingredient> ingregients, ArrayList<String> cookingSteps) {
         this.name = name;
         this.img = img;

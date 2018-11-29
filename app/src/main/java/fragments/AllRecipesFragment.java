@@ -30,6 +30,8 @@ public class AllRecipesFragment extends Fragment {
     private int currentRecipe;
     private int currentFragment;
 
+    private Recipe recipe;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,18 +44,19 @@ public class AllRecipesFragment extends Fragment {
         ArrayList<String> stepsArrayList = new ArrayList<>();
         stepsArrayList.add("mix all");
         stepsArrayList.add("DONE!");
-        recipeBook.add(new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList));
+        recipe = new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList);
+        recipeBook.add(recipe);
 
-        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes_dark)));
-        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
-        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
-
-        recipeBook.add(new Recipe("Пирожные", getResources().getDrawable(R.drawable.brownies)));
-        recipeBook.add(new Recipe("Печенье", getResources().getDrawable(R.drawable.cookies)));
-        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
-        recipeBook.add(new Recipe("Пироги", getResources().getDrawable(R.drawable.pies)));
-        recipeBook.add(new Recipe("Вафли", getResources().getDrawable(R.drawable.waffles)));
-        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
+//        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes)));
+//        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
+//        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
+//
+//        recipeBook.add(new Recipe("Пирожные", getResources().getDrawable(R.drawable.brownies)));
+//        recipeBook.add(new Recipe("Печенье", getResources().getDrawable(R.drawable.cookies)));
+//        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
+//        recipeBook.add(new Recipe("Пироги", getResources().getDrawable(R.drawable.pies)));
+//        recipeBook.add(new Recipe("Вафли", getResources().getDrawable(R.drawable.waffles)));
+//        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
     }
 
     public ArrayList<Recipe> getRecipeBook() {
@@ -90,44 +93,46 @@ public class AllRecipesFragment extends Fragment {
                 switch (position) {
                     case 0:
                         cakeRecipes = new ArrayList<>();
-                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_napoleon), getResources().getDrawable(R.drawable.napoleon)));
-                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_graph_ruins), getResources().getDrawable(R.drawable.graph_ruins)));
+                        cakeRecipes.add(recipe);
+                        cakeRecipes.add(recipe);
+//                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_napoleon), getResources().getDrawable(R.drawable.napoleon)));
+//                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_graph_ruins), getResources().getDrawable(R.drawable.graph_ruins)));
                         onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
                         break;
                     case 1:
                         brownieRecipes = new ArrayList<>();
-                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
-                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
+//                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
+//                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
                         onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
                         break;
                     case 2:
                         cookieRecipes = new ArrayList<>();
-                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
-                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
+//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
+//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
                         onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
                         break;
                     case 3:
                         pancakeRecipes = new ArrayList<>();
-                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
-                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
+//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
+//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
                         onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
                         break;
                     case 4:
                         pieRecipes = new ArrayList<>();
-                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
-                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
+//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
+//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
                         onChangeArrayList(pieRecipes, getResources().getString(R.string.title_pies));
                         break;
                     case 5:
                         waffleRecipes = new ArrayList<>();
-                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
-                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
+//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
+//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
                         onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
                         break;
                     case 6:
                         muffinRecipes = new ArrayList<>();
-                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
-                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
+//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
+//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
                         onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
                         break;
                 }
@@ -150,15 +155,7 @@ public class AllRecipesFragment extends Fragment {
                 @Override
                 public void onItemClick(View view, int position) {
                     currentRecipe = position;
-//                    Toast.makeText(getActivity(), "You clicked " + adapter.getItemName(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-//                    ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
-//                    ingredientArrayList.add(new Ingredient("milk", 2));
-//                    ingredientArrayList.add(new Ingredient("eggs", 4));
-//                    ArrayList<String> stepsArrayList = new ArrayList<>();
-//                    stepsArrayList.add("mix all");
-//                    stepsArrayList.add("DONE!");
                     Recipe recipe = adapter.getItem(position);
-//                    Recipe recipe = new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList);
                     RecipeFragment recipeFragment = new RecipeFragment();
                     recipeFragment.setRecipe(recipe);
                     actionbar.setTitle(adapter.getItemName(position));
