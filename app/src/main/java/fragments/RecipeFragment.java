@@ -1,12 +1,14 @@
 package fragments;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yom.Ingredient;
@@ -22,6 +24,7 @@ import static com.yom.MainActivity.typefaceRegular;
 public class RecipeFragment extends Fragment {
 
     private String name;
+    private Drawable image;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<String> cookingSteps;
     private Typeface typefaceJura;
@@ -34,6 +37,7 @@ public class RecipeFragment extends Fragment {
 
     public void setRecipe(Recipe recipe) {
         name = recipe.getName();
+        image = recipe.getImg();
         ingredients = recipe.getIngredients();
         cookingSteps = recipe.getCookingSteps();
     }
@@ -42,7 +46,8 @@ public class RecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recipe_fragment, null);
-
+        ImageView imageView = view.findViewById(R.id.img);
+        imageView.setImageDrawable(image);
         TextView ingredientList = view.findViewById(R.id.ingredient_list);
         ingredientList.setTypeface(typefaceJura);
         for (int i = 0; i < ingredients.size(); i++) {

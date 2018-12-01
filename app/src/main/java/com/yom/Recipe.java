@@ -13,8 +13,12 @@ public class Recipe {
     public Recipe(String name, Drawable img, ArrayList<Ingredient> ingregients, ArrayList<String> cookingSteps) {
         this.name = name;
         this.img = img;
-        this.ingregients = ingregients;
-        this.cookingSteps = cookingSteps;
+        if (ingregients != null) {
+            this.ingregients = ingregients;
+        }
+        if (cookingSteps != null) {
+            this.cookingSteps = cookingSteps;
+        }
     }
 
     public ArrayList<Ingredient> getIngredients() {

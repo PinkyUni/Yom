@@ -1,5 +1,9 @@
 package fragments;
 
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,15 +15,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yom.DatabaseHelper;
 import com.yom.Ingredient;
 import com.yom.MainActivity;
 import com.yom.MyRecyclerViewAdapter;
 import com.yom.R;
 import com.yom.Recipe;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class AllRecipesFragment extends Fragment {
+
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     public FragmentTransaction fragmentTransaction;
     private MyRecyclerViewAdapter mainAdapter, adapter;
@@ -30,33 +40,71 @@ public class AllRecipesFragment extends Fragment {
     private int currentRecipe;
     private int currentFragment;
 
-    private Recipe recipe;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
-        ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
-        ingredientArrayList.add(new Ingredient("milk", 2));
-        ingredientArrayList.add(new Ingredient("eggs", 4));
-        ArrayList<String> stepsArrayList = new ArrayList<>();
-        stepsArrayList.add("mix all");
-        stepsArrayList.add("DONE!");
-        recipe = new Recipe("Napoleon", getResources().getDrawable(R.drawable.napoleon), ingredientArrayList, stepsArrayList);
-        recipeBook.add(recipe);
+        mDBHelper = new DatabaseHelper(getContext());
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+        try {
+            mDb = mDBHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
+        getDataFromDatabase("main", recipeBook);
+    }
 
-//        recipeBook.add(new Recipe("Торты", getResources().getDrawable(R.drawable.cakes)));
-//        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
-//        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
-//
-//        recipeBook.add(new Recipe("Пирожные", getResources().getDrawable(R.drawable.brownies)));
-//        recipeBook.add(new Recipe("Печенье", getResources().getDrawable(R.drawable.cookies)));
-//        recipeBook.add(new Recipe("Блины", getResources().getDrawable(R.drawable.pancakes_dark)));
-//        recipeBook.add(new Recipe("Пироги", getResources().getDrawable(R.drawable.pies)));
-//        recipeBook.add(new Recipe("Вафли", getResources().getDrawable(R.drawable.waffles)));
-//        recipeBook.add(new Recipe("Маффины", getResources().getDrawable(R.drawable.muffins_dark)));
+    private void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
+        Cursor cursor = mDb.rawQuery("SELECT * FROM " + tableName, null);
+        while (cursor.moveToNext()) {
+            String dbName = cursor.getString(cursor
+                    .getColumnIndex("name"));
+            String dbImg = cursor.getString(cursor
+                    .getColumnIndex("img"));
+            InputStream inputStream = null;
+            Drawable d = null;
+            try {
+                inputStream = getActivity().getApplicationContext().getAssets().open(dbImg);
+                d = Drawable.createFromStream(inputStream, null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (inputStream != null)
+                        inputStream.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
+            ArrayList<String> stepsArrayList = new ArrayList<>();
+            if (!tableName.equals("main")) {
+                String dbIngredients = cursor.getString(cursor
+                        .getColumnIndex("ingredients"));
+                Integer dbAmount = cursor.getInt(cursor
+                        .getColumnIndex("amount"));
+                String dbCooking = cursor.getString(cursor
+                        .getColumnIndex("cooking"));
+                ingredientArrayList.add(new Ingredient(dbIngredients, dbAmount));
+                stepsArrayList.add(dbCooking);
+            }
+            if (d != null) {
+                Recipe recipe;
+                if (tableName.equals("main")) {
+                    recipe = new Recipe(dbName, d, null, null);
+                } else {
+                    recipe = new Recipe(dbName, d, ingredientArrayList, stepsArrayList);
+                }
+                arrayList.add(recipe);
+            }
+        }
+        cursor.close();
     }
 
     public ArrayList<Recipe> getRecipeBook() {
@@ -93,8 +141,9 @@ public class AllRecipesFragment extends Fragment {
                 switch (position) {
                     case 0:
                         cakeRecipes = new ArrayList<>();
-                        cakeRecipes.add(recipe);
-                        cakeRecipes.add(recipe);
+                        getDataFromDatabase("Recipes", cakeRecipes);
+//                        cakeRecipes.add(recipe);
+//                        cakeRecipes.add(recipe);
 //                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_napoleon), getResources().getDrawable(R.drawable.napoleon)));
 //                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_graph_ruins), getResources().getDrawable(R.drawable.graph_ruins)));
                         onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
@@ -169,4 +218,3 @@ public class AllRecipesFragment extends Fragment {
         }
     }
 }
-
