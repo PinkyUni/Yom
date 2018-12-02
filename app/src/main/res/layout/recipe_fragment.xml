@@ -47,7 +47,6 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Napoleon"
                     android:textColor="@color/colorWhite"
                     android:textSize="22sp" />
 
@@ -69,7 +68,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_time_24dp"
-                        android:text="1 hlkfbkgf"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp" />
@@ -80,7 +78,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_receipt_24dp"
-                        android:text="1h"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp" />
@@ -91,7 +88,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_star_24dp"
-                        android:text="1 hour"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp" />
@@ -138,7 +134,6 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_marginBottom="4dp"
-                    android:text="Ingredients"
                     android:textAllCaps="true"
                     android:textColor="@color/colorTxtBackGrey"
                     android:textSize="18sp"
@@ -185,7 +180,6 @@
                     android:paddingBottom="4dp"
                     android:layout_marginBottom="4dp"
                     android:textAllCaps="true"
-                    android:text="Cooking"
                     android:textColor="@color/colorTxtBackGrey"
                     android:textSize="18sp"
                     android:textStyle="bold" />

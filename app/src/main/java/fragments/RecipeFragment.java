@@ -16,9 +16,6 @@ import com.yom.Ingredient;
 import com.yom.R;
 import com.yom.Recipe;
 
-import java.util.ArrayList;
-
-import static com.yom.MainActivity.typefaceBold;
 import static com.yom.MainActivity.typefaceMedium;
 import static com.yom.MainActivity.typefaceRegular;
 
@@ -71,6 +68,7 @@ public class RecipeFragment extends Fragment {
         }
 
         TextView titleName = view.findViewById(R.id.name);
+//        String tempName = getStringValue(name);
         titleName.setText(name);
         titleName.setTypeface(typefaceMedium);
 
@@ -93,8 +91,6 @@ public class RecipeFragment extends Fragment {
 
         TextView lvl = view.findViewById(R.id.lvl);
         lvl.setTypeface(typefaceRegular);
-//        int strId = getContext().getResources().getIdentifier(level, "string", getContext().getPackageName());
-//        String strValue = getContext().getResources().getString(strId);
         String strLvl = getStringValue(level);
         if (!strLvl.equals(null)) {
             lvl.setText(strLvl);
@@ -102,7 +98,6 @@ public class RecipeFragment extends Fragment {
         else {
             lvl.setText(getResources().getString(R.string.txt_normal));
         }
-//        lvl.setText(level);
         return view;
     }
 

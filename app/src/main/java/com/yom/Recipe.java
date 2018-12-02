@@ -2,8 +2,6 @@ package com.yom;
 
 import android.graphics.drawable.Drawable;
 
-import java.util.ArrayList;
-
 public class Recipe {
     private String name;
     private Drawable img;

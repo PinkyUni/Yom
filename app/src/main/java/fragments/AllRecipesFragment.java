@@ -1,5 +1,6 @@
 package fragments;
 
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -39,10 +40,12 @@ public class AllRecipesFragment extends Fragment {
 
     private int currentRecipe;
     private int currentFragment;
+    private RecipeFragment recipeFragment;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        recipeFragment = new RecipeFragment();
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
@@ -82,10 +85,11 @@ public class AllRecipesFragment extends Fragment {
                     ex.printStackTrace();
                 }
             }
+            String tempName = getStringValue(dbName);
+            dbName = tempName;
             Float dbDuration = null;
             Integer dbCalories = null;
             String dbLvl = null;
-//            ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
             Ingredient[] ingredientsArray = new Ingredient[0];
             String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
@@ -114,6 +118,18 @@ public class AllRecipesFragment extends Fragment {
             arrayList.add(recipe);
         }
         cursor.close();
+    }
+
+    public String getStringValue(String key) {
+        // Retrieve the resource id
+        String packageName = getContext().getPackageName();
+        Resources resources = getContext().getResources();
+        int stringId = resources.getIdentifier(key, "string", packageName);
+        if (stringId == 0) {
+            return null;
+        }
+        // Return the string value based on the res id
+        return resources.getString(stringId);
     }
 
     public ArrayList<Recipe> getRecipeBook() {
@@ -210,7 +226,6 @@ public class AllRecipesFragment extends Fragment {
                 public void onItemClick(View view, int position) {
                     currentRecipe = position;
                     Recipe recipe = adapter.getItem(position);
-                    RecipeFragment recipeFragment = new RecipeFragment();
                     recipeFragment.setRecipe(recipe);
                     actionbar.setTitle(adapter.getItemName(position));
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
