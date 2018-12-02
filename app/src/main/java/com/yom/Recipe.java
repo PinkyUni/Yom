@@ -10,10 +10,10 @@ public class Recipe {
     private Float duration;
     private Integer calories;
     private String level;
-    private ArrayList<Ingredient> ingredients;
-    private ArrayList<String> cookingSteps;
+    private Ingredient[] ingredients;
+    private String[] cookingSteps;
 
-    public Recipe(String name, Drawable img, Float duration, Integer calories, String level, ArrayList<Ingredient> ingredients, ArrayList<String> cookingSteps) {
+    public Recipe(String name, Drawable img, Float duration, Integer calories, String level, Ingredient[] ingredients, String[] cookingSteps) {
         this.name = name;
         this.img = img;
         this.duration = duration;
@@ -35,11 +35,11 @@ public class Recipe {
         return this.level;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public Ingredient[] getIngredients() {
         return this.ingredients;
     }
 
-    public ArrayList<String> getCookingSteps() {
+    public String[] getCookingSteps() {
         return this.cookingSteps;
     }
 

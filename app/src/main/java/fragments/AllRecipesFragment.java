@@ -85,19 +85,32 @@ public class AllRecipesFragment extends Fragment {
             Float dbDuration = null;
             Integer dbCalories = null;
             String dbLvl = null;
-            ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
-            ArrayList<String> stepsArrayList = new ArrayList<>();
+//            ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
+            Ingredient[] ingredientsArray = new Ingredient[0];
+            String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
                 dbDuration = cursor.getFloat(cursor.getColumnIndex("duration"));
                 dbCalories = cursor.getInt(cursor.getColumnIndex("cal"));
                 dbLvl = cursor.getString(cursor.getColumnIndex("lvl"));
+
                 String dbIngredients = cursor.getString(cursor.getColumnIndex("ingredients"));
-                Integer dbAmount = cursor.getInt(cursor.getColumnIndex("amount"));
+                String[] arrIngredients = dbIngredients.split("\n");
+
+                String dbAmount = cursor.getString(cursor.getColumnIndex("amount"));
+                String[] temp = dbAmount.split("\n");
+                int[] arrAmounts = new int[temp.length];
+                for (int i = 0; i < temp.length; i++) {
+                    arrAmounts[i] = Integer.parseInt(temp[i]);
+                }
+                ingredientsArray = new Ingredient[temp.length];
+                for (int i = 0; i < arrIngredients.length; i++) {
+                    ingredientsArray[i] = new Ingredient(arrIngredients[i], arrAmounts[i]);
+                }
+
                 String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
-                ingredientArrayList.add(new Ingredient(dbIngredients, dbAmount));
-                stepsArrayList.add(dbCooking);
+                stepsArray = dbCooking.split("\n");
             }
-            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, ingredientArrayList, stepsArrayList);
+            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, ingredientsArray, stepsArray);
             arrayList.add(recipe);
         }
         cursor.close();

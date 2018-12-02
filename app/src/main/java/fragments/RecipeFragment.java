@@ -29,8 +29,8 @@ public class RecipeFragment extends Fragment {
     private Float duration;
     private Integer calories;
     private String level;
-    private ArrayList<Ingredient> ingredients;
-    private ArrayList<String> cookingSteps;
+    private Ingredient[] ingredients;
+    private String[] cookingSteps;
     private Typeface typefaceJura;
 
     @Override
@@ -56,17 +56,18 @@ public class RecipeFragment extends Fragment {
         ImageView imageView = view.findViewById(R.id.img);
         imageView.setImageDrawable(image);
         TextView ingredientList = view.findViewById(R.id.ingredient_list);
+
         ingredientList.setTypeface(typefaceJura);
-        for (int i = 0; i < ingredients.size(); i++) {
-            ingredientList.append("- " + ingredients.get(i).getName() + "\n");
+        for (int i = 0; i < ingredients.length; i++) {
+            ingredientList.append("- " + ingredients[i].getName() + "\n");
         }
         TextView titleCooking = view.findViewById(R.id.title_cooking);
         titleCooking.setTypeface(typefaceMedium);
 
         TextView cookingStepsList = view.findViewById(R.id.cooking_steps_list);
         cookingStepsList.setTypeface(typefaceJura);
-        for (int i = 0; i < cookingSteps.size(); i++) {
-            cookingStepsList.append(Integer.toString(i + 1) + ". " + cookingSteps.get(i) + "\n");
+        for (int i = 0; i < cookingSteps.length; i++) {
+            cookingStepsList.append(Integer.toString(i + 1) + ". " + cookingSteps[i] + "\n");
         }
 
         TextView titleName = view.findViewById(R.id.name);
