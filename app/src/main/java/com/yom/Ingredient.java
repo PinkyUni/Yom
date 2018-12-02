@@ -2,9 +2,9 @@ package com.yom;
 
 public class Ingredient {
     private String name;
-    private int amount;
+    private Float amount;
 
-    public Ingredient(String name, int amount) {
+    public Ingredient(String name, Float amount) {
         this.name = name;
         this.amount = amount;
     }

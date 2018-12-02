@@ -102,9 +102,9 @@ public class AllRecipesFragment extends Fragment {
 
                 String dbAmount = cursor.getString(cursor.getColumnIndex("amount"));
                 String[] temp = dbAmount.split("\n");
-                int[] arrAmounts = new int[temp.length];
+                Float[] arrAmounts = new Float[temp.length];
                 for (int i = 0; i < temp.length; i++) {
-                    arrAmounts[i] = Integer.parseInt(temp[i]);
+                    arrAmounts[i] = Float.parseFloat(temp[i]);
                 }
                 ingredientsArray = new Ingredient[temp.length];
                 for (int i = 0; i < arrIngredients.length; i++) {
