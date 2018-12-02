@@ -7,22 +7,46 @@ import java.util.ArrayList;
 public class Recipe {
     private String name;
     private Drawable img;
-    private ArrayList<Ingredient> ingregients;
+    private Float duration;
+    private Integer calories;
+    private String level;
+    private ArrayList<Ingredient> ingredients;
     private ArrayList<String> cookingSteps;
 
-    public Recipe(String name, Drawable img, ArrayList<Ingredient> ingregients, ArrayList<String> cookingSteps) {
+    public Recipe(String name, Drawable img, Float duration, Integer calories, String level, ArrayList<Ingredient> ingredients, ArrayList<String> cookingSteps) {
         this.name = name;
         this.img = img;
-        if (ingregients != null) {
-            this.ingregients = ingregients;
+        if (duration != null) {
+            this.duration = duration;
+        }
+        if (calories != null) {
+            this.calories = calories;
+        }
+        if (level != null) {
+            this.level = level;
+        }
+        if (ingredients != null) {
+            this.ingredients = ingredients;
         }
         if (cookingSteps != null) {
             this.cookingSteps = cookingSteps;
         }
     }
 
+    public Float getDuration() {
+        return this.duration;
+    }
+
+    public Integer getCalories() {
+        return this.calories;
+    }
+
+    public String getLevel() {
+        return this.level;
+    }
+
     public ArrayList<Ingredient> getIngredients() {
-        return this.ingregients;
+        return this.ingredients;
     }
 
     public ArrayList<String> getCookingSteps() {

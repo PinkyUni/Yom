@@ -82,27 +82,23 @@ public class AllRecipesFragment extends Fragment {
                     ex.printStackTrace();
                 }
             }
+            Float dbDuration = null;
+            Integer dbCalories = null;
+            String dbLvl = null;
             ArrayList<Ingredient> ingredientArrayList = new ArrayList<>();
             ArrayList<String> stepsArrayList = new ArrayList<>();
             if (!tableName.equals("main")) {
-                String dbIngredients = cursor.getString(cursor
-                        .getColumnIndex("ingredients"));
-                Integer dbAmount = cursor.getInt(cursor
-                        .getColumnIndex("amount"));
-                String dbCooking = cursor.getString(cursor
-                        .getColumnIndex("cooking"));
+                dbDuration = cursor.getFloat(cursor.getColumnIndex("duration"));
+                dbCalories = cursor.getInt(cursor.getColumnIndex("cal"));
+                dbLvl = cursor.getString(cursor.getColumnIndex("lvl"));
+                String dbIngredients = cursor.getString(cursor.getColumnIndex("ingredients"));
+                Integer dbAmount = cursor.getInt(cursor.getColumnIndex("amount"));
+                String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
                 ingredientArrayList.add(new Ingredient(dbIngredients, dbAmount));
                 stepsArrayList.add(dbCooking);
             }
-            if (d != null) {
-                Recipe recipe;
-                if (tableName.equals("main")) {
-                    recipe = new Recipe(dbName, d, null, null);
-                } else {
-                    recipe = new Recipe(dbName, d, ingredientArrayList, stepsArrayList);
-                }
-                arrayList.add(recipe);
-            }
+            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, ingredientArrayList, stepsArrayList);
+            arrayList.add(recipe);
         }
         cursor.close();
     }
@@ -142,10 +138,6 @@ public class AllRecipesFragment extends Fragment {
                     case 0:
                         cakeRecipes = new ArrayList<>();
                         getDataFromDatabase("Recipes", cakeRecipes);
-//                        cakeRecipes.add(recipe);
-//                        cakeRecipes.add(recipe);
-//                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_napoleon), getResources().getDrawable(R.drawable.napoleon)));
-//                        cakeRecipes.add(new Recipe(getResources().getString(R.string.cake_graph_ruins), getResources().getDrawable(R.drawable.graph_ruins)));
                         onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
                         break;
                     case 1:

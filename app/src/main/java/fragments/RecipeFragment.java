@@ -25,6 +25,9 @@ public class RecipeFragment extends Fragment {
 
     private String name;
     private Drawable image;
+    private Float duration;
+    private Integer calories;
+    private String level;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<String> cookingSteps;
     private Typeface typefaceJura;
@@ -38,6 +41,9 @@ public class RecipeFragment extends Fragment {
     public void setRecipe(Recipe recipe) {
         name = recipe.getName();
         image = recipe.getImg();
+        duration = recipe.getDuration();
+        calories = recipe.getCalories();
+        level = recipe.getLevel();
         ingredients = recipe.getIngredients();
         cookingSteps = recipe.getCookingSteps();
     }
@@ -59,7 +65,7 @@ public class RecipeFragment extends Fragment {
         TextView cookingStepsList = view.findViewById(R.id.cooking_steps_list);
         cookingStepsList.setTypeface(typefaceJura);
         for (int i = 0; i < cookingSteps.size(); i++) {
-            cookingStepsList.append(Integer.toString(i + 1)+ ". " + cookingSteps.get(i) + "\n");
+            cookingStepsList.append(Integer.toString(i + 1) + ". " + cookingSteps.get(i) + "\n");
         }
 
         TextView titleName = view.findViewById(R.id.name);
@@ -70,11 +76,22 @@ public class RecipeFragment extends Fragment {
         titleIngredients.setTypeface(typefaceMedium);
 
         TextView time = view.findViewById(R.id.time);
-        TextView cal = view.findViewById(R.id.cal);
-        TextView lvl = view.findViewById(R.id.lvl);
         time.setTypeface(typefaceRegular);
+        int hours = duration.intValue();
+        time.setText(String.valueOf(hours));
+        time.append(" " + getResources().getString(R.string.txt_hour) + " ");
+        Float tmp = (duration - hours) * 100;
+        Integer minutes = tmp.intValue();
+        time.append(String.valueOf(minutes)+ " " + getResources().getString(R.string.txt_min));
+
+        TextView cal = view.findViewById(R.id.cal);
         cal.setTypeface(typefaceRegular);
+        String tmpCalories = calories.toString()+ " " + getResources().getString(R.string.txt_calories);
+        cal.setText(tmpCalories);
+
+        TextView lvl = view.findViewById(R.id.lvl);
         lvl.setTypeface(typefaceRegular);
+        lvl.setText(level);
         return view;
     }
 }

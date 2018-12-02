@@ -32,7 +32,9 @@
 
     <string name="title_muffins">Маффины</string>
 
-
+    <string name="txt_calories">ккал</string>
+    <string name="txt_hour">ч</string>
+    <string name="txt_min">мин</string>
 
     <string name="txt_ingredients">   Ингредиенты</string>
 </resources>

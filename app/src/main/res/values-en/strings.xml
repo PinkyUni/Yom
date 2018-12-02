@@ -32,6 +32,9 @@
 
     <string name="title_muffins">Muffins</string>
 
+    <string name="txt_calories">cal</string>
+    <string name="txt_hour">h</string>
+    <string name="txt_min">min</string>
 
     <string name="txt_ingredients">   Ingredients</string>
 </resources>
