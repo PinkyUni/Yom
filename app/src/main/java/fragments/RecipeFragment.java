@@ -1,5 +1,6 @@
 package fragments;
 
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -82,16 +83,37 @@ public class RecipeFragment extends Fragment {
         time.append(" " + getResources().getString(R.string.txt_hour) + " ");
         Float tmp = (duration - hours) * 100;
         Integer minutes = tmp.intValue();
-        time.append(String.valueOf(minutes)+ " " + getResources().getString(R.string.txt_min));
+        time.append(String.valueOf(minutes) + " " + getResources().getString(R.string.txt_min));
 
         TextView cal = view.findViewById(R.id.cal);
         cal.setTypeface(typefaceRegular);
-        String tmpCalories = calories.toString()+ " " + getResources().getString(R.string.txt_calories);
+        String tmpCalories = calories.toString() + " " + getResources().getString(R.string.txt_calories);
         cal.setText(tmpCalories);
 
         TextView lvl = view.findViewById(R.id.lvl);
         lvl.setTypeface(typefaceRegular);
-        lvl.setText(level);
+//        int strId = getContext().getResources().getIdentifier(level, "string", getContext().getPackageName());
+//        String strValue = getContext().getResources().getString(strId);
+        String strLvl = getStringValue(level);
+        if (!strLvl.equals(null)) {
+            lvl.setText(strLvl);
+        }
+        else {
+            lvl.setText(getResources().getString(R.string.txt_normal));
+        }
+//        lvl.setText(level);
         return view;
+    }
+
+    public String getStringValue(String key) {
+        // Retrieve the resource id
+        String packageName = getContext().getPackageName();
+        Resources resources = getContext().getResources();
+        int stringId = resources.getIdentifier(key, "string", packageName);
+        if (stringId == 0) {
+            return null;
+        }
+        // Return the string value based on the res id
+        return resources.getString(stringId);
     }
 }

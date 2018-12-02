@@ -16,21 +16,11 @@ public class Recipe {
     public Recipe(String name, Drawable img, Float duration, Integer calories, String level, ArrayList<Ingredient> ingredients, ArrayList<String> cookingSteps) {
         this.name = name;
         this.img = img;
-        if (duration != null) {
-            this.duration = duration;
-        }
-        if (calories != null) {
-            this.calories = calories;
-        }
-        if (level != null) {
-            this.level = level;
-        }
-        if (ingredients != null) {
-            this.ingredients = ingredients;
-        }
-        if (cookingSteps != null) {
-            this.cookingSteps = cookingSteps;
-        }
+        this.duration = duration;
+        this.calories = calories;
+        this.level = level;
+        this.ingredients = ingredients;
+        this.cookingSteps = cookingSteps;
     }
 
     public Float getDuration() {

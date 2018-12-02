@@ -35,6 +35,9 @@
     <string name="txt_calories">cal</string>
     <string name="txt_hour">h</string>
     <string name="txt_min">min</string>
+    <string name="txt_hard">Hard</string>
+    <string name="txt_normal">Normal</string>
+    <string name="txt_easy">Easy</string>
 
     <string name="txt_ingredients">   Ingredients</string>
 </resources>

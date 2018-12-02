@@ -137,7 +137,7 @@ public class AllRecipesFragment extends Fragment {
                 switch (position) {
                     case 0:
                         cakeRecipes = new ArrayList<>();
-                        getDataFromDatabase("Recipes", cakeRecipes);
+                        getDataFromDatabase("cakeRecipes", cakeRecipes);
                         onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
                         break;
                     case 1:

@@ -35,6 +35,9 @@
     <string name="txt_calories">ккал</string>
     <string name="txt_hour">ч</string>
     <string name="txt_min">мин</string>
+    <string name="txt_hard">Сложно</string>
+    <string name="txt_normal">Нормально</string>
+    <string name="txt_easy">Легко</string>
 
     <string name="txt_ingredients">   Ингредиенты</string>
 </resources>

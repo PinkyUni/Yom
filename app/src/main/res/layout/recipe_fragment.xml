@@ -65,21 +65,21 @@
 
                     <TextView
                         android:id="@+id/time"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:drawableTop="@drawable/ic_time_24dp"
-                        android:text="1 h"
+                        android:text="1 hlkfbkgf"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/cal"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_time_24dp"
+                        android:drawableTop="@drawable/ic_receipt_24dp"
                         android:text="1h"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
@@ -87,10 +87,10 @@
 
                     <TextView
                         android:id="@+id/lvl"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_time_24dp"
+                        android:drawableTop="@drawable/ic_star_24dp"
                         android:text="1 hour"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
