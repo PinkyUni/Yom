@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // set up the RecyclerView
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-
+        navigationView.setCheckedItem(R.id.nav_recipes);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override

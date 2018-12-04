@@ -2,6 +2,7 @@ package fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class FavouriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.favourite_fragment, null);
         emptyList = view.findViewById(R.id.empty_faves);
+        emptyList.setGravity(Gravity.CENTER);
         emptyList.setTypeface(typefaceRegular);
         return view;
     }
