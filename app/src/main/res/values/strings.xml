@@ -19,13 +19,17 @@
     <string name="title_cakes">Торты</string>
     <string name="cake_napoleon">Наполеон</string>
     <string name="cake_graph_ruins">Графские развалины</string>
+    <string name="cake_jelly">Желейный торт</string>
 
     <string name="title_brownies">Пирожные</string>
 
     <string name="title_cookies">Печенье</string>
+    <string name="ginger_cookie">Имбирное печенье</string>
 
-    <string name="title_pancakes">Блины</string>
+    <string name="title_pancakes">Блины и оладьи</string>
     <string name="american_pancakes">Американские блины</string>
+    <string name="pancakes_tiramisu">Блины тирамису</string>
+    <string name="chocolate_banana_fritters">Шоколадно-банановые оладьи</string>
 
     <string name="title_pies">Пироги</string>
 

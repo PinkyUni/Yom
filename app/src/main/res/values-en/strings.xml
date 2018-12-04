@@ -19,13 +19,19 @@
     <string name="title_cakes">Cakes</string>
     <string name="cake_napoleon">Napoleon</string>
     <string name="cake_graph_ruins">Graph ruins</string>
+    <string name="cake_jelly">Jelly cake</string>
 
     <string name="title_brownies">Brownies</string>
 
     <string name="title_cookies">Cookies</string>
+    <string name="ginger_cookie">Ginger cookies</string>
 
-    <string name="title_pancakes">Pancakes</string>
+
+    <string name="title_pancakes">Pancakes and fritters</string>
     <string name="american_pancakes">American pancakes</string>
+    <string name="pancakes_tiramisu">Tiramisu pancakes</string>
+    <string name="chocolate_banana_fritters">Chocolate Banana Fritters</string>
+
 
     <string name="title_pies">Pies</string>
 

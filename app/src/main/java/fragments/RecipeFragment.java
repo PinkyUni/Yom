@@ -77,11 +77,15 @@ public class RecipeFragment extends Fragment {
         TextView time = view.findViewById(R.id.time);
         time.setTypeface(typefaceRegular);
         int hours = duration.intValue();
-        time.setText(String.valueOf(hours));
-        time.append(" " + getResources().getString(R.string.txt_hour) + " ");
+        if (hours != 0) {
+            time.setText(String.valueOf(hours));
+            time.append(" " + getResources().getString(R.string.txt_hour) + " ");
+        }
         Float tmp = (duration - hours) * 100;
         Integer minutes = tmp.intValue();
-        time.append(String.valueOf(minutes) + " " + getResources().getString(R.string.txt_min));
+        if (minutes != 0) {
+            time.append(String.valueOf(minutes) + " " + getResources().getString(R.string.txt_min));
+        }
 
         TextView cal = view.findViewById(R.id.cal);
         cal.setTypeface(typefaceRegular);

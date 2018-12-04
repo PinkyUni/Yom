@@ -92,7 +92,7 @@ public class AllRecipesFragment extends Fragment {
             String[] arrIngredients = new String[0];
             String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
-                dbDuration = cursor.getFloat(cursor.getColumnIndex("duration"));
+                dbDuration = cursor.getFloat(cursor.getColumnIndex("time"));
                 dbCalories = cursor.getInt(cursor.getColumnIndex("cal"));
                 dbLvl = cursor.getString(cursor.getColumnIndex("lvl"));
 
@@ -155,8 +155,7 @@ public class AllRecipesFragment extends Fragment {
                 break;
             case 2:
                 cookieRecipes = new ArrayList<>();
-//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
-//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
+                getDataFromDatabase("cookieRecipes", cookieRecipes);
                 onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
                 break;
             case 3:
@@ -192,7 +191,6 @@ public class AllRecipesFragment extends Fragment {
         View view = inflater.inflate(R.layout.all_recipes_fragment, null);
         recyclerView = view.findViewById(R.id.Recipes);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mainAdapter = new MyRecyclerViewAdapter(getActivity(), recipeBook);
         mainAdapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
             @Override
