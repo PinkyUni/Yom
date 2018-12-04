@@ -2,12 +2,8 @@ package com.yom;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -17,17 +13,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yom.databinding.ActivityMainBinding;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 import fragments.AboutFragment;
 import fragments.AddFragment;
@@ -59,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         allRecipesFragment = new AllRecipesFragment();
-//        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.content_frame, allRecipesFragment);
-//        fragmentTransaction.commit();
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -193,7 +181,14 @@ public class MainActivity extends AppCompatActivity {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (relatedToMainRecipes()) {
+                allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+                allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentMainItem());
+                allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+            } else {
+                super.onBackPressed();
+                allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
+            }
         }
     }
 
@@ -204,16 +199,29 @@ public class MainActivity extends AppCompatActivity {
                 if (getSupportActionBar().getTitle().equals(getResources().getString(R.string.app_name))) {
                     mDrawerLayout.openDrawer(GravityCompat.START);
                 } else {
-                    if (getSupportActionBar().getTitle().equals(getResources().getString(R.string.title_cakes))) {
-                        allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentFragmentId());
+                    if (relatedToMainRecipes()) {
+                        allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
+                        allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentMainItem());
                         allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                     } else {
-                        onBackPressed();
+                        super.onBackPressed();
+                        allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
                     }
                     return true;
                 }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean relatedToMainRecipes() {
+        int i = 0;
+        do {
+            if (allRecipesFragment.getRecipeBook().get(i).getName().equals(getSupportActionBar().getTitle())) {
+                return true;
+            }
+            i++;
+        } while (i < allRecipesFragment.getRecipeBook().size());
+        return false;
     }
 
     @Override

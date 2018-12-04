@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yom.DatabaseHelper;
-import com.yom.Ingredient;
 import com.yom.MainActivity;
 import com.yom.MyRecyclerViewAdapter;
 import com.yom.R;
@@ -39,7 +38,7 @@ public class AllRecipesFragment extends Fragment {
     private ActionBar actionbar;
 
     private int currentRecipe;
-    private int currentFragment;
+    private int currentMainItem;
     private RecipeFragment recipeFragment;
 
     @Override
@@ -90,7 +89,7 @@ public class AllRecipesFragment extends Fragment {
             Float dbDuration = null;
             Integer dbCalories = null;
             String dbLvl = null;
-            Ingredient[] ingredientsArray = new Ingredient[0];
+            String[] arrIngredients = new String[0];
             String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
                 dbDuration = cursor.getFloat(cursor.getColumnIndex("duration"));
@@ -98,23 +97,12 @@ public class AllRecipesFragment extends Fragment {
                 dbLvl = cursor.getString(cursor.getColumnIndex("lvl"));
 
                 String dbIngredients = cursor.getString(cursor.getColumnIndex("ingredients"));
-                String[] arrIngredients = dbIngredients.split("\n");
-
-                String dbAmount = cursor.getString(cursor.getColumnIndex("amount"));
-                String[] temp = dbAmount.split("\n");
-                Float[] arrAmounts = new Float[temp.length];
-                for (int i = 0; i < temp.length; i++) {
-                    arrAmounts[i] = Float.parseFloat(temp[i]);
-                }
-                ingredientsArray = new Ingredient[temp.length];
-                for (int i = 0; i < arrIngredients.length; i++) {
-                    ingredientsArray[i] = new Ingredient(arrIngredients[i], arrAmounts[i]);
-                }
+                arrIngredients = dbIngredients.split("\n");
 
                 String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
                 stepsArray = dbCooking.split("\n");
             }
-            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, ingredientsArray, stepsArray);
+            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, arrIngredients, stepsArray);
             arrayList.add(recipe);
         }
         cursor.close();
@@ -144,12 +132,58 @@ public class AllRecipesFragment extends Fragment {
         return fragmentTransaction;
     }
 
-    public int getCurrentFragmentId() {
-        return currentFragment;
+    public int getCurrentMainItem() {
+        return currentMainItem;
     }
 
     public int getCurrentRecipe() {
         return currentRecipe;
+    }
+
+    public void setMainItem(int position) {
+        currentMainItem = position;
+        switch (position) {
+            case 0:
+                cakeRecipes = new ArrayList<>();
+                getDataFromDatabase("cakeRecipes", cakeRecipes);
+                onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
+                break;
+            case 1:
+                pancakeRecipes = new ArrayList<>();
+                getDataFromDatabase("pancakeRecipes", pancakeRecipes);
+                onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
+                break;
+            case 2:
+                cookieRecipes = new ArrayList<>();
+//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
+//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
+                onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
+                break;
+            case 3:
+                brownieRecipes = new ArrayList<>();
+//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
+//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
+                onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
+                break;
+            case 4:
+                pieRecipes = new ArrayList<>();
+//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
+//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
+                onChangeArrayList(pieRecipes, getResources().getString(R.string.title_pies));
+                break;
+            case 5:
+                waffleRecipes = new ArrayList<>();
+//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
+//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
+                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
+                break;
+            case 6:
+                muffinRecipes = new ArrayList<>();
+//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
+//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
+                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
+                break;
+        }
     }
 
     @Override
@@ -158,54 +192,13 @@ public class AllRecipesFragment extends Fragment {
         View view = inflater.inflate(R.layout.all_recipes_fragment, null);
         recyclerView = view.findViewById(R.id.Recipes);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         mainAdapter = new MyRecyclerViewAdapter(getActivity(), recipeBook);
         mainAdapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                currentFragment = position;
-                switch (position) {
-                    case 0:
-                        cakeRecipes = new ArrayList<>();
-                        getDataFromDatabase("cakeRecipes", cakeRecipes);
-                        onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
-                        break;
-                    case 1:
-                        brownieRecipes = new ArrayList<>();
-//                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
-//                        brownieRecipes.add(new Recipe(getResources().getString(R.string.title_brownies), getResources().getDrawable(R.drawable.brownies)));
-                        onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
-                        break;
-                    case 2:
-                        cookieRecipes = new ArrayList<>();
-//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
-//                        cookieRecipes.add(new Recipe(getResources().getString(R.string.title_cookies), getResources().getDrawable(R.drawable.cookies)));
-                        onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
-                        break;
-                    case 3:
-                        pancakeRecipes = new ArrayList<>();
-//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
-//                        pancakeRecipes.add(new Recipe(getResources().getString(R.string.title_pancakes), getResources().getDrawable(R.drawable.pancakes)));
-                        onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
-                        break;
-                    case 4:
-                        pieRecipes = new ArrayList<>();
-//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
-//                        pieRecipes.add(new Recipe(getResources().getString(R.string.title_pies), getResources().getDrawable(R.drawable.pies)));
-                        onChangeArrayList(pieRecipes, getResources().getString(R.string.title_pies));
-                        break;
-                    case 5:
-                        waffleRecipes = new ArrayList<>();
-//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
-//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
-                        onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
-                        break;
-                    case 6:
-                        muffinRecipes = new ArrayList<>();
-//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
-//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
-                        onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
-                        break;
-                }
+                currentMainItem = position;
+                setMainItem(position);
             }
         });
         recyclerView.setAdapter(mainAdapter);

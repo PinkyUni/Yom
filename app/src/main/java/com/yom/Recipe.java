@@ -8,10 +8,10 @@ public class Recipe {
     private Float duration;
     private Integer calories;
     private String level;
-    private Ingredient[] ingredients;
+    private String[] ingredients;
     private String[] cookingSteps;
 
-    public Recipe(String name, Drawable img, Float duration, Integer calories, String level, Ingredient[] ingredients, String[] cookingSteps) {
+    public Recipe(String name, Drawable img, Float duration, Integer calories, String level, String[] ingredients, String[] cookingSteps) {
         this.name = name;
         this.img = img;
         this.duration = duration;
@@ -33,7 +33,7 @@ public class Recipe {
         return this.level;
     }
 
-    public Ingredient[] getIngredients() {
+    public String[] getIngredients() {
         return this.ingredients;
     }
 

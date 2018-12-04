@@ -25,6 +25,7 @@
     <string name="title_cookies">Cookies</string>
 
     <string name="title_pancakes">Pancakes</string>
+    <string name="american_pancakes">American pancakes</string>
 
     <string name="title_pies">Pies</string>
 
@@ -39,5 +40,6 @@
     <string name="txt_normal">Normal</string>
     <string name="txt_easy">Easy</string>
 
-    <string name="txt_ingredients">   Ingredients</string>
+    <string name="title_ingredients">Ingredients</string>
+    <string name="title_cooking">Cooking</string>
 </resources>

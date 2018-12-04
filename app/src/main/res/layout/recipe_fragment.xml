@@ -136,6 +136,7 @@
                     android:layout_marginBottom="4dp"
                     android:textAllCaps="true"
                     android:textColor="@color/colorTxtBackGrey"
+                    android:text="@string/title_ingredients"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -178,6 +179,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_marginBottom="4dp"
+                    android:text="@string/title_cooking"
                     android:textAllCaps="true"
                     android:textColor="@color/colorTxtBackGrey"
                     android:textSize="18sp"
@@ -187,6 +189,7 @@
                     android:id="@+id/cooking_steps_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="none"
                     android:lineSpacingExtra="4dp"
                     android:textSize="16sp" />
 

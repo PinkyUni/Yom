@@ -25,6 +25,7 @@
     <string name="title_cookies">Печенье</string>
 
     <string name="title_pancakes">Блины</string>
+    <string name="american_pancakes">Американские блины</string>
 
     <string name="title_pies">Пироги</string>
 
@@ -39,5 +40,6 @@
     <string name="txt_normal">Нормально</string>
     <string name="txt_easy">Легко</string>
 
-    <string name="txt_ingredients">   Ингредиенты</string>
+    <string name="title_ingredients">Ингредиенты</string>
+    <string name="title_cooking">Приготовление</string>
 </resources>

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yom.Ingredient;
 import com.yom.R;
 import com.yom.Recipe;
 
@@ -26,7 +25,7 @@ public class RecipeFragment extends Fragment {
     private Float duration;
     private Integer calories;
     private String level;
-    private Ingredient[] ingredients;
+    private String[] ingredients;
     private String[] cookingSteps;
     private Typeface typefaceJura;
 
@@ -56,7 +55,7 @@ public class RecipeFragment extends Fragment {
 
         ingredientList.setTypeface(typefaceJura);
         for (int i = 0; i < ingredients.length; i++) {
-            ingredientList.append("- " + ingredients[i].getName() + "\n");
+            ingredientList.append("- " + ingredients[i] + "\n");
         }
         TextView titleCooking = view.findViewById(R.id.title_cooking);
         titleCooking.setTypeface(typefaceMedium);
