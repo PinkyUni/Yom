@@ -11,7 +11,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="358dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccentLight"
+            android:elevation="2dp"
+            android:paddingBottom="8dp">
 
             <ImageView
                 android:id="@+id/img"
@@ -23,88 +27,89 @@
                 android:src="@drawable/cakes_dark" />
 
             <TextView
+                android:id="@+id/shadow"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_alignBottom="@+id/img"
-                android:background="@drawable/shadow"/>
+                android:background="@drawable/shadow" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/img"
+                android:layout_below="@id/img"
+                android:layout_toStartOf="@id/btn_fav"
+                android:layout_toLeftOf="@id/btn_fav"
                 android:background="@color/colorAccentLight"
-                android:elevation="2dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="vertical"
                 android:paddingStart="14dp"
                 android:paddingLeft="14dp"
                 android:paddingTop="8dp"
                 android:paddingEnd="14dp"
                 android:paddingRight="14dp"
-                android:paddingBottom="8dp">
+                android:paddingBottom="8dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="22sp" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/name"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorWhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_time_24dp"
+                    android:textAlignment="center"
                     android:textColor="@color/colorWhite"
-                    android:textSize="22sp" />
+                    android:textSize="14sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/colorWhite" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/cal"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_receipt_24dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_time_24dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/cal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_receipt_24dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/lvl"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/ic_star_24dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/lvl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_star_24dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_fav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
+                android:layout_marginTop="238dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginBottom="76dp"
+                android:layout_marginBottom="22dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_favorite_24dp"
                 app:backgroundTint="@color/colorAccent" />
@@ -122,21 +127,21 @@
                 android:orientation="vertical"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="4dp">
+                android:paddingRight="10dp">
 
                 <TextView
                     android:id="@+id/title_ingredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
-                    android:layout_marginBottom="4dp"
+                    android:text="@string/title_ingredients"
                     android:textAllCaps="true"
                     android:textColor="@color/colorTxtBackGrey"
-                    android:text="@string/title_ingredients"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -154,11 +159,11 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp">
 
             <LinearLayout
@@ -167,18 +172,18 @@
                 android:orientation="vertical"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="4dp">
+                android:paddingRight="10dp">
 
                 <TextView
                     android:id="@+id/title_cooking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/title_cooking"
                     android:textAllCaps="true"
                     android:textColor="@color/colorTxtBackGrey"
