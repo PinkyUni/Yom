@@ -24,6 +24,7 @@ public class RecipeFragment extends Fragment {
     private Drawable image;
     private Float duration;
     private Integer calories;
+    private Integer portions;
     private String level;
     private String[] ingredients;
     private String[] cookingSteps;
@@ -40,6 +41,7 @@ public class RecipeFragment extends Fragment {
         image = recipe.getImg();
         duration = recipe.getDuration();
         calories = recipe.getCalories();
+        portions = recipe.getPortions();
         level = recipe.getLevel();
         ingredients = recipe.getIngredients();
         cookingSteps = recipe.getCookingSteps();
@@ -67,7 +69,6 @@ public class RecipeFragment extends Fragment {
         }
 
         TextView titleName = view.findViewById(R.id.name);
-//        String tempName = getStringValue(name);
         titleName.setText(name);
         titleName.setTypeface(typefaceMedium);
 
@@ -77,30 +78,25 @@ public class RecipeFragment extends Fragment {
         TextView time = view.findViewById(R.id.time);
         time.setTypeface(typefaceRegular);
         int hours = duration.intValue();
-        if (hours != 0) {
-            time.setText(String.valueOf(hours));
-            time.append(" " + getResources().getString(R.string.txt_hour) + " ");
-        }
+        time.setText(String.valueOf(hours));
+        time.append(":");
         Float tmp = (duration - hours) * 100;
         Integer minutes = tmp.intValue();
-        if (minutes != 0) {
-            time.append(String.valueOf(minutes) + " " + getResources().getString(R.string.txt_min));
-        }
+        time.append(String.valueOf(minutes));
 
         TextView cal = view.findViewById(R.id.cal);
         cal.setTypeface(typefaceRegular);
         String tmpCalories = calories.toString() + " " + getResources().getString(R.string.txt_calories);
         cal.setText(tmpCalories);
 
+        TextView portion = view.findViewById(R.id.portion);
+        portion.setTypeface(typefaceRegular);
+        portion.setText(String.valueOf(portions));
+
         TextView lvl = view.findViewById(R.id.lvl);
         lvl.setTypeface(typefaceRegular);
         String strLvl = getStringValue(level);
-        if (!strLvl.equals(null)) {
-            lvl.setText(strLvl);
-        }
-        else {
-            lvl.setText(getResources().getString(R.string.txt_normal));
-        }
+        lvl.setText(strLvl);
         return view;
     }
 

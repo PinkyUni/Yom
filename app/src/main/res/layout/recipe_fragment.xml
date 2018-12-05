@@ -89,6 +89,16 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/portion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_restaurant_24dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp" />
+
+                <TextView
                     android:id="@+id/lvl"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

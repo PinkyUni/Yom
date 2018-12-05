@@ -14,12 +14,16 @@
     <string name="txt_settings">Settings</string>
     <string name="txt_about">About program</string>
 
-    <string name="txt_faves_empty">Here will be the list of your favourite recipes</string>
+    <string name="txt_faves_empty">Here will be shown the list of your favourite recipes</string>
+    <string name="txt_user_recipes_empty">Here will be shown the list of your recipes</string>
+
 
     <string name="title_cakes">Cakes</string>
     <string name="cake_napoleon">Napoleon</string>
     <string name="cake_graph_ruins">Graph ruins</string>
     <string name="cake_jelly">Jelly cake</string>
+    <string name="carrot_cake">Carrot cake</string>
+
 
     <string name="title_brownies">Brownies</string>
 

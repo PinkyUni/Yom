@@ -15,11 +15,13 @@
     <string name="txt_about">О программе</string>
 
     <string name="txt_faves_empty">Здесь будет список Ваших любимых рецептов</string>
+    <string name="txt_user_recipes_empty">Здесь будет список Ваших рецептов</string>
 
     <string name="title_cakes">Торты</string>
     <string name="cake_napoleon">Наполеон</string>
     <string name="cake_graph_ruins">Графские развалины</string>
     <string name="cake_jelly">Желейный торт</string>
+    <string name="carrot_cake">Морковный торт</string>
 
     <string name="title_brownies">Пирожные</string>
 

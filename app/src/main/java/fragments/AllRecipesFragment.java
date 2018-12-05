@@ -86,14 +86,16 @@ public class AllRecipesFragment extends Fragment {
             }
             String tempName = getStringValue(dbName);
             dbName = tempName;
-            Float dbDuration = null;
-            Integer dbCalories = null;
-            String dbLvl = null;
+            Float dbDuration = 0f;
+            Integer dbCalories = 0;
+            Integer dbPortions = 0;
+            String dbLvl = getResources().getString(R.string.txt_normal);
             String[] arrIngredients = new String[0];
             String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
                 dbDuration = cursor.getFloat(cursor.getColumnIndex("time"));
                 dbCalories = cursor.getInt(cursor.getColumnIndex("cal"));
+                dbPortions = cursor.getInt(cursor.getColumnIndex("portion"));
                 dbLvl = cursor.getString(cursor.getColumnIndex("lvl"));
 
                 String dbIngredients = cursor.getString(cursor.getColumnIndex("ingredients"));
@@ -102,7 +104,7 @@ public class AllRecipesFragment extends Fragment {
                 String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
                 stepsArray = dbCooking.split("\n");
             }
-            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbLvl, arrIngredients, stepsArray);
+            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbPortions, dbLvl, arrIngredients, stepsArray);
             arrayList.add(recipe);
         }
         cursor.close();

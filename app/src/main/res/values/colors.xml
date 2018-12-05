@@ -10,8 +10,8 @@
     <!--<color name="colorAccent">#fdb52f</color>-->
     <!--<color name="colorAccentLight">#a4fadcbf</color>-->
 
-    <color name="colorPrimary">#FF9800</color>
-    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorPrimary">#f7a383</color>
+    <color name="colorPrimaryDark">#f7a383</color>
     <color name="colorPrimaryLight">#fdfaf5</color>
     <color name="colorAccent">#f7a383</color>
     <color name="colorAccentLight">#9a95a6</color>
@@ -21,4 +21,5 @@
     <color name="colorTxtBackGrey">#90292929</color>
     <color name="colorTxtBackBlack">#ad000000</color>
     <color name="colorTransparent">#00000000</color>
+
 </resources>
