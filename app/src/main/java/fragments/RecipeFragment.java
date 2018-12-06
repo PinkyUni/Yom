@@ -25,7 +25,6 @@ public class RecipeFragment extends Fragment {
     private Float duration;
     private Integer calories;
     private Integer portions;
-    private String level;
     private String[] ingredients;
     private String[] cookingSteps;
     private Typeface typefaceJura;
@@ -42,7 +41,6 @@ public class RecipeFragment extends Fragment {
         duration = recipe.getDuration();
         calories = recipe.getCalories();
         portions = recipe.getPortions();
-        level = recipe.getLevel();
         ingredients = recipe.getIngredients();
         cookingSteps = recipe.getCookingSteps();
     }
@@ -75,28 +73,29 @@ public class RecipeFragment extends Fragment {
         TextView titleIngredients = view.findViewById(R.id.title_ingredients);
         titleIngredients.setTypeface(typefaceMedium);
 
+        TextView titleTime = view.findViewById(R.id.title_time);
+        titleTime.setTypeface(typefaceRegular);
         TextView time = view.findViewById(R.id.time);
         time.setTypeface(typefaceRegular);
         int hours = duration.intValue();
-        time.setText(String.valueOf(hours));
-        time.append(":");
+        String txtTime = String.valueOf(hours) + ":";
         Float tmp = (duration - hours) * 100;
         Integer minutes = tmp.intValue();
-        time.append(String.valueOf(minutes));
+        txtTime += String.valueOf(minutes);
+        time.setText(txtTime);
 
+        TextView titleCal = view.findViewById(R.id.title_cal);
+        titleCal.setTypeface(typefaceRegular);
         TextView cal = view.findViewById(R.id.cal);
         cal.setTypeface(typefaceRegular);
-        String tmpCalories = calories.toString() + " " + getResources().getString(R.string.txt_calories);
+        String tmpCalories = calories.toString();
         cal.setText(tmpCalories);
 
+        TextView titlePortion = view.findViewById(R.id.title_portion);
+        titlePortion.setTypeface(typefaceRegular);
         TextView portion = view.findViewById(R.id.portion);
         portion.setTypeface(typefaceRegular);
         portion.setText(String.valueOf(portions));
-
-        TextView lvl = view.findViewById(R.id.lvl);
-        lvl.setTypeface(typefaceRegular);
-        String strLvl = getStringValue(level);
-        lvl.setText(strLvl);
         return view;
     }
 
