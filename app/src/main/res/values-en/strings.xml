@@ -18,17 +18,25 @@
     <string name="txt_user_recipes_empty">Here will be shown the list of your recipes</string>
 
 
-    <string name="title_cakes">Cakes</string>
+    <string name="title_cakes">Cakes and pies</string>
     <string name="cake_napoleon">Napoleon</string>
     <string name="cake_graph_ruins">Graph ruins</string>
     <string name="cake_jelly">Jelly cake</string>
     <string name="carrot_cake">Carrot cake</string>
+    <string name="chocolate_cake">Chocolate cake</string>
 
 
     <string name="title_brownies">Brownies</string>
+    <string name="brownie">Brownie</string>
+    <string name="brownie_bites">Brownie bites</string>
+
 
     <string name="title_cookies">Cookies</string>
     <string name="ginger_cookie">Ginger cookies</string>
+    <string name="traditional_ginger_cookie">Traditional ginger cookies</string>
+    <string name="vanilla_chocolate_cookie">Vanilla chocolate cookies</string>
+    <string name="almond_cookie">Almond cookies</string>
+    <string name="oat_cookie">Oat cookies</string>
 
 
     <string name="title_pancakes">Pancakes and fritters</string>

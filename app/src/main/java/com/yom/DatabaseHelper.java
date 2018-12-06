@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "dbRecipeBook.db";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 5;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
@@ -28,10 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
         this.mContext = context;
-
         copyDataBase();
-
-
         this.getReadableDatabase();
     }
 
@@ -40,9 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             File dbFile = new File(DB_PATH + DB_NAME);
             if (dbFile.exists())
                 dbFile.delete();
-
             copyDataBase();
-
             mNeedUpdate = false;
         }
     }

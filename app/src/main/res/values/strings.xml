@@ -17,16 +17,23 @@
     <string name="txt_faves_empty">Здесь будет список Ваших любимых рецептов</string>
     <string name="txt_user_recipes_empty">Здесь будет список Ваших рецептов</string>
 
-    <string name="title_cakes">Торты</string>
+    <string name="title_cakes">Пироги и торты</string>
     <string name="cake_napoleon">Наполеон</string>
     <string name="cake_graph_ruins">Графские развалины</string>
     <string name="cake_jelly">Желейный торт</string>
     <string name="carrot_cake">Морковный торт</string>
+    <string name="chocolate_cake">Шоколадный торт с крем-сыром</string>
 
     <string name="title_brownies">Пирожные</string>
+    <string name="brownie">Брауни</string>
+    <string name="brownie_bites">Мини брауни</string>
 
     <string name="title_cookies">Печенье</string>
     <string name="ginger_cookie">Имбирное печенье</string>
+    <string name="traditional_ginger_cookie">Традиционное имбирное печенье</string>
+    <string name="vanilla_chocolate_cookie">Шоколадно-ванильное печенье</string>
+    <string name="almond_cookie">Миндальное печенье</string>
+    <string name="oat_cookie">Овсяное печенье на апельсиновом соке</string>
 
     <string name="title_pancakes">Блины и оладьи</string>
     <string name="american_pancakes">Американские блины</string>
