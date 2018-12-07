@@ -27,6 +27,7 @@
     <string name="beet_chocolate_pie">Свекольно-шоколадный пирог</string>
     <string name="ginger_melissa_cake">Пирог со свежим имбирем и мелиссой</string>
     <string name="pumpkin_pie">Тыквенный пирог</string>
+    <string name="chocolate_nut_pie">Шоколадно-ореховый крученый пирог</string>
 
     <string name="title_brownies">Пирожные</string>
     <string name="brownie">Брауни</string>
@@ -44,11 +45,17 @@
     <string name="pancakes_tiramisu">Блины тирамису</string>
     <string name="chocolate_banana_fritters">Шоколадно-банановые оладьи</string>
 
-    <string name="title_pies">Пироги</string>
+    <string name="title_cheesecakes">Сырники и запеканки</string>
 
     <string name="title_waffles">Вафли</string>
+    <string name="cottage_cheese_waffles">Творожные вафли</string>
 
     <string name="title_muffins">Маффины</string>
+    <string name="blueberry_muffins_streisel">Маффины с черникой и штрейзелем</string>
+    <string name="blueberry_muffins">Черничные маффины</string>
+    <string name="chocolate_muffins_with_chocolate">Шоколадные маффины</string>
+    <string name="apple_muffins_with_oat">Маффины с яблоком, специями и овсянкой</string>
+
 
     <string name="calories">Калории</string>
     <string name="time">Время</string>

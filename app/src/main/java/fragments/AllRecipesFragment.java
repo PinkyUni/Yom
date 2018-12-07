@@ -164,16 +164,14 @@ public class AllRecipesFragment extends Fragment {
                 onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
                 break;
             case 4:
-                waffleRecipes = new ArrayList<>();
-//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
-//                        waffleRecipes.add(new Recipe(getResources().getString(R.string.title_waffles), getResources().getDrawable(R.drawable.waffles)));
-                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
+                muffinRecipes = new ArrayList<>();
+                getDataFromDatabase("muffinRecipes", muffinRecipes);
+                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
                 break;
             case 5:
-                muffinRecipes = new ArrayList<>();
-//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
-//                        muffinRecipes.add(new Recipe(getResources().getString(R.string.title_muffins), getResources().getDrawable(R.drawable.muffins)));
-                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
+                waffleRecipes = new ArrayList<>();
+                getDataFromDatabase("waffleRecipes", waffleRecipes);
+                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
                 break;
         }
     }

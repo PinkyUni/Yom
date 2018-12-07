@@ -28,7 +28,7 @@
     <string name="beet_chocolate_pie">Beet chocolate pie</string>
     <string name="ginger_melissa_cake">Ginger melissa pie</string>
     <string name="pumpkin_pie">Pumpkin pie</string>
-
+    <string name="chocolate_nut_pie">Chocolate pie with nuts</string>
 
     <string name="title_brownies">Brownies</string>
     <string name="brownie">Brownie</string>
@@ -49,11 +49,17 @@
     <string name="chocolate_banana_fritters">Chocolate Banana Fritters</string>
 
 
-    <string name="title_pies">Pies</string>
+    <string name="title_cheesecakes">Cheesecakes and casseroles</string>
 
     <string name="title_waffles">Waffles</string>
+    <string name="cottage_cheese_waffles">Cottage cheese waffles</string>
 
     <string name="title_muffins">Muffins</string>
+    <string name="blueberry_muffins_streisel">Blueberry muffins with Streisel</string>
+    <string name="blueberry_muffins">Blueberry muffins</string>
+    <string name="chocolate_muffins_with_chocolate">Chocolate muffins</string>
+    <string name="apple_muffins_with_oat">Apple muffins with spices and oatmeal</string>
+
 
     <string name="calories">Calories</string>
     <string name="time">Time</string>
