@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        allRecipesFragment = new AllRecipesFragment();
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        onChangeFragment();
     }
 
     public void onChangeFragment() {
@@ -138,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         TextView toolbarTxt = (TextView) toolbar.getChildAt(0);
         switch (currentFragment) {
             case 1:
+                allRecipesFragment = new AllRecipesFragment();
                 fragmentTransaction.replace(R.id.content_frame, allRecipesFragment);
                 toolbarTxt.setText(getResources().getString(R.string.app_name));
                 break;
