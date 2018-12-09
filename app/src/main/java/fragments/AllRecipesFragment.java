@@ -25,6 +25,8 @@ import com.yom.Recipe;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AllRecipesFragment extends Fragment {
 
@@ -33,7 +35,7 @@ public class AllRecipesFragment extends Fragment {
 
     public FragmentTransaction fragmentTransaction;
     private MyRecyclerViewAdapter mainAdapter, adapter;
-    private ArrayList<Recipe> recipeBook, cakeRecipes, brownieRecipes, cookieRecipes, pancakeRecipes, pieRecipes, waffleRecipes, muffinRecipes;
+    private ArrayList<Recipe> recipeBook, cakeRecipes, brownieRecipes, cookieRecipes, pancakeRecipes, waffleRecipes, muffinRecipes;
     private RecyclerView recyclerView;
     private ActionBar actionbar;
 
@@ -48,7 +50,7 @@ public class AllRecipesFragment extends Fragment {
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
-        mDBHelper = new DatabaseHelper(getContext());
+        mDBHelper = new DatabaseHelper(this.getContext());
         try {
             mDBHelper.updateDataBase();
         } catch (IOException mIOException) {
@@ -65,10 +67,9 @@ public class AllRecipesFragment extends Fragment {
     private void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
         Cursor cursor = mDb.rawQuery("SELECT * FROM " + tableName, null);
         while (cursor.moveToNext()) {
-            String dbName = cursor.getString(cursor
-                    .getColumnIndex("name"));
-            String dbImg = cursor.getString(cursor
-                    .getColumnIndex("img"));
+            Integer dbId = cursor.getInt(cursor.getColumnIndex("_id"));
+            String dbName = cursor.getString(cursor.getColumnIndex("name"));
+            String dbImg = cursor.getString(cursor.getColumnIndex("img"));
             InputStream inputStream = null;
             Drawable d = null;
             try {
@@ -102,7 +103,7 @@ public class AllRecipesFragment extends Fragment {
                 String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
                 stepsArray = dbCooking.split("\n");
             }
-            Recipe recipe = new Recipe(dbName, d, dbDuration, dbCalories, dbPortions, arrIngredients, stepsArray);
+            Recipe recipe = new Recipe(dbId, dbName, d, dbDuration, dbCalories, dbPortions, arrIngredients, stepsArray);
             arrayList.add(recipe);
         }
         cursor.close();
@@ -140,41 +141,84 @@ public class AllRecipesFragment extends Fragment {
         return currentRecipe;
     }
 
+    public void toSort(ArrayList<Recipe> arrayList) {
+        Collections.sort(arrayList, new Comparator<Recipe>() {
+            public int compare(Recipe recipe1, Recipe recipe2) {
+                return recipe1.getName().compareTo(recipe2.getName());
+            }
+        });
+    }
+
     public void setMainItem(int position) {
+//        TODO надо получать имя нажатого элемента и подгружать уже инфу из соответствующей таблицы бд
         currentMainItem = position;
-        switch (position) {
-            case 0:
-                cakeRecipes = new ArrayList<>();
-                getDataFromDatabase("cakeRecipes", cakeRecipes);
-                onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
-                break;
+        String curName = mainAdapter.getItem(position).getName();
+        ArrayList<Recipe> arrayList = new ArrayList<>();
+        switch (mainAdapter.getItem(position).getId()) {
             case 1:
-                brownieRecipes = new ArrayList<>();
-                getDataFromDatabase("brownieRecipes", brownieRecipes);
-                onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
+                getDataFromDatabase("cakeRecipes", arrayList);
                 break;
             case 2:
-                pancakeRecipes = new ArrayList<>();
-                getDataFromDatabase("pancakeRecipes", pancakeRecipes);
-                onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
+                getDataFromDatabase("brownieRecipes", arrayList);
                 break;
             case 3:
-                cookieRecipes = new ArrayList<>();
-                getDataFromDatabase("cookieRecipes", cookieRecipes);
-                onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
+                getDataFromDatabase("pancakeRecipes", arrayList);
                 break;
             case 4:
-                muffinRecipes = new ArrayList<>();
-                getDataFromDatabase("muffinRecipes", muffinRecipes);
-                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
+                getDataFromDatabase("cookieRecipes", arrayList);
                 break;
             case 5:
-                waffleRecipes = new ArrayList<>();
-                getDataFromDatabase("waffleRecipes", waffleRecipes);
-                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
+                getDataFromDatabase("muffinRecipes", arrayList);
+                break;
+            case 6:
+                getDataFromDatabase("waffleRecipes", arrayList);
+                break;
+            case 7:
+                getDataFromDatabase("bunRecipes", arrayList);
+                break;
+            case 8:
+                getDataFromDatabase("cheesecakeRecipes", arrayList);
                 break;
         }
+        toSort(arrayList);
+        onChangeArrayList(arrayList, curName);
     }
+
+//    public void setMainItem(int position) {
+//        currentMainItem = position;
+//        switch (position) {
+//            case 0:
+//                cakeRecipes = new ArrayList<>();
+//                getDataFromDatabase("cakeRecipes", cakeRecipes);
+//                onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
+//                break;
+//            case 1:
+//                brownieRecipes = new ArrayList<>();
+//                getDataFromDatabase("brownieRecipes", brownieRecipes);
+//                onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
+//                break;
+//            case 2:
+//                pancakeRecipes = new ArrayList<>();
+//                getDataFromDatabase("pancakeRecipes", pancakeRecipes);
+//                onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
+//                break;
+//            case 3:
+//                cookieRecipes = new ArrayList<>();
+//                getDataFromDatabase("cookieRecipes", cookieRecipes);
+//                onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
+//                break;
+//            case 4:
+//                muffinRecipes = new ArrayList<>();
+//                getDataFromDatabase("muffinRecipes", muffinRecipes);
+//                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
+//                break;
+//            case 5:
+//                waffleRecipes = new ArrayList<>();
+//                getDataFromDatabase("waffleRecipes", waffleRecipes);
+//                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
+//                break;
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

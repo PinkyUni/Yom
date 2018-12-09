@@ -3,6 +3,7 @@ package com.yom;
 import android.graphics.drawable.Drawable;
 
 public class Recipe {
+    private Integer id;
     private String name;
     private Drawable img;
     private Float duration;
@@ -11,7 +12,8 @@ public class Recipe {
     private String[] ingredients;
     private String[] cookingSteps;
 
-    public Recipe(String name, Drawable img, Float duration, Integer calories, Integer portions, String[] ingredients, String[] cookingSteps) {
+    public Recipe(Integer id, String name, Drawable img, Float duration, Integer calories, Integer portions, String[] ingredients, String[] cookingSteps) {
+        this.id = id;
         this.name = name;
         this.img = img;
         this.duration = duration;
@@ -19,6 +21,10 @@ public class Recipe {
         this.portions = portions;
         this.ingredients = ingredients;
         this.cookingSteps = cookingSteps;
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
     public Float getDuration() {
