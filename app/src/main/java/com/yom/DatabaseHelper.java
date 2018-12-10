@@ -1,9 +1,11 @@
 package com.yom;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "dbRecipeBook.db";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 9;
+    private static int DB_VERSION = 1;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
@@ -86,13 +88,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        TODO
-        db.execSQL("CREATE TABLE myRecipes ( _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, img TEXT NOT NULL, time REAL NOT NULL, cal INTEGER NOT NULL, lvl TEXT NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
+        db.execSQL("CREATE TABLE myRecipes ( _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, img TEXT NOT NULL, " +
+                "time REAL NOT NULL, cal INTEGER NOT NULL, portion INTEGER NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion)
-            mNeedUpdate = true;
+//        if (newVersion > oldVersion)
+//            mNeedUpdate = true;
+        db.execSQL("DROP TABLE IF EXISTS myRecipes");
+        onCreate(db);
+//        DB_VERSION++;
     }
+
 }

@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     public Toolbar toolbar;
     public static Typeface typefaceRegular, typefaceMedium, typefaceBold, typefaceJura;
 
+    public AllRecipesFragment getAllRecipesFragment() {
+        return allRecipesFragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -237,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 addFragment.addMyRecipeDatabaseItem();
-                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

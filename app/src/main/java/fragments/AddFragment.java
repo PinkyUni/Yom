@@ -3,6 +3,7 @@ package fragments;
 import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -85,26 +86,53 @@ public class AddFragment extends Fragment {
 
     public void addMyRecipeDatabaseItem() {
         String dbName = txtName.getText().toString();
-        Integer dbTime = Integer.parseInt(txtTime.getText().toString());
-        Integer dbCal = Integer.parseInt(txtCal.getText().toString());
-        Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
+        Float dbTime = 0f;
+        Integer dbCal = 0;
+        Integer dbPortions = 4;
+//        Integer dbTime = Integer.parseInt(txtTime.getText().toString());
+//        Integer dbCal = Integer.parseInt(txtCal.getText().toString());
+//        Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
         String dbIngredients = txtIngredients.getText().toString();
         String dbCooking = txtCooking.getText().toString();
 
-        mDBHelper = new DatabaseHelper(getContext());
+        mDBHelper = ((MainActivity) getActivity()).allRecipesFragment.getmDBHelper();
+//        mDb = ((MainActivity)getActivity()).allRecipesFragment.getmDb();
         mDb = mDBHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
+//        contentValues.put("_id", 1);
         contentValues.put("name", dbName);
+        contentValues.put("img", "puk");
         contentValues.put("time", dbTime);
         contentValues.put("cal", dbCal);
         contentValues.put("portion", dbPortions);
         contentValues.put("ingredients", dbIngredients);
         contentValues.put("cooking", dbCooking);
 
-        mDb.insert("waffleRecipes", null, contentValues);
-        mDBHelper.close();
+        long id = mDb.insert("myRecipes", null, contentValues);
         Toast.makeText(getContext(), "DONE", Toast.LENGTH_SHORT).show();
+
+//        mDBHelper.close();
+
+//        mDb = ((MainActivity)getActivity()).allRecipesFragment.getmDb();
+        Cursor c = mDb.query("myRecipes", null, null, null, null, null, null);
+        int count = c.getCount();
+        // ставим позицию курсора на первую строку выборки
+        // если в выборке нет строк, вернется false
+        if (c.moveToFirst()) {
+
+            // определяем номера столбцов по имени в выборке
+            int nameColIndex = c.getColumnIndex("name");
+
+            do {
+                Toast.makeText(getContext(), c.getString(nameColIndex), Toast.LENGTH_SHORT).show();
+
+                // переход на следующую строку
+                // а если следующей нет (текущая - последняя), то false - выходим из цикла
+            } while (c.moveToNext());
+        }
+        c.close();
+//        mDBHelper.close();
     }
 
     @Override

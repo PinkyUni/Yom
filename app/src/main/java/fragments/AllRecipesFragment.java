@@ -30,18 +30,26 @@ import java.util.Comparator;
 
 public class AllRecipesFragment extends Fragment {
 
-    private DatabaseHelper mDBHelper;
+    public DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
     public FragmentTransaction fragmentTransaction;
     private MyRecyclerViewAdapter mainAdapter, adapter;
-    private ArrayList<Recipe> recipeBook, cakeRecipes, brownieRecipes, cookieRecipes, pancakeRecipes, waffleRecipes, muffinRecipes;
+    private ArrayList<Recipe> recipeBook;
     private RecyclerView recyclerView;
     private ActionBar actionbar;
 
     private int currentRecipe;
     private int currentMainItem;
     private RecipeFragment recipeFragment;
+
+    public final SQLiteDatabase getmDb() {
+        return mDb;
+    }
+
+    public DatabaseHelper getmDBHelper() {
+        return mDBHelper;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
