@@ -6,13 +6,13 @@ public class Recipe {
     private Integer id;
     private String name;
     private Drawable img;
-    private Float duration;
+    private String duration;
     private Integer calories;
     private Integer portions;
     private String[] ingredients;
     private String[] cookingSteps;
 
-    public Recipe(Integer id, String name, Drawable img, Float duration, Integer calories, Integer portions, String[] ingredients, String[] cookingSteps) {
+    public Recipe(Integer id, String name, Drawable img, String duration, Integer calories, Integer portions, String[] ingredients, String[] cookingSteps) {
         this.id = id;
         this.name = name;
         this.img = img;
@@ -27,7 +27,7 @@ public class Recipe {
         return this.id;
     }
 
-    public Float getDuration() {
+    public String getDuration() {
         return this.duration;
     }
 

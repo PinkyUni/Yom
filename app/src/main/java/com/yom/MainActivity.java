@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public SearchFragment searchFragment;
     public FavouriteFragment favouriteFragment;
     private MenuItem btnAdd;
+    private NavigationView navigationView;
 
     private DrawerLayout mDrawerLayout;
     public Toolbar toolbar;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(typefaceBold);
         textView.setTextSize(24);
 //
-        NavigationView navigationView = findViewById(R.id.nav_view);
+         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView personName = headerView.findViewById(R.id.txt_person);
         personName.setText(R.string.person_name);
@@ -244,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 addFragment.addMyRecipeDatabaseItem();
+                navigationView.setCheckedItem(R.id.nav_my_recipes);
                 mainViewModel.getCurrentFragment().setValue(3);
                 View v = getCurrentFocus();
                 if (v != null) {

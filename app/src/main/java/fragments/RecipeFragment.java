@@ -30,7 +30,7 @@ public class RecipeFragment extends Fragment {
 
     private String name;
     private Drawable image;
-    private Float duration;
+    private String duration;
     private Integer calories;
     private Integer portions;
     private String[] ingredients;
@@ -84,13 +84,7 @@ public class RecipeFragment extends Fragment {
         titleTime.setTypeface(typefaceRegular);
         final TextView time = view.findViewById(R.id.time);
         time.setTypeface(typefaceRegular);
-        int hours = duration.intValue();
-        String txtTime = String.valueOf(hours);
-//        String txtTime = String.valueOf(hours) + ":";
-        Float tmp = (duration - hours) * 100;
-        Integer minutes = tmp.intValue();
-        txtTime += String.valueOf(minutes);
-        time.setText(txtTime);
+        time.setText(duration);
 
         TextView titleCal = view.findViewById(R.id.title_cal);
         titleCal.setTypeface(typefaceRegular);
@@ -144,7 +138,7 @@ public class RecipeFragment extends Fragment {
                 if (!recipeIsFavourite()) {
                     btnFav.setImageResource(R.drawable.ic_favorite_selected_24dp);
                     String dbName = titleName.getText().toString();
-                    Float dbTime = Float.parseFloat(time.getText().toString());
+                    String dbTime = time.getText().toString();
                     Integer dbCal = Integer.parseInt(cal.getText().toString());
                     Integer dbPortions = Integer.parseInt(portion.getText().toString());
 //                String dbIngredients = recipe.getIngredients();

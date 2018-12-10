@@ -76,7 +76,7 @@ public class SearchFragment extends Fragment {
                     String[] cookingList = c.getString(cookingColIndex).split("\n");
                     int id = arrayList.size();
                     arrayList.add(new Recipe(id, c.getString(nameColIndex), getActivity().getResources().getDrawable(R.drawable.napoleon),
-                            c.getFloat(timeColIndex), c.getInt(calColIndex), c.getInt(portionColIndex), ingredientList, cookingList));
+                            c.getString(timeColIndex), c.getInt(calColIndex), c.getInt(portionColIndex), ingredientList, cookingList));
                 }
             } while (c.moveToNext());
         }

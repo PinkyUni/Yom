@@ -89,9 +89,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE myRecipes ( _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, img TEXT NOT NULL, " +
-                "time REAL NOT NULL, cal INTEGER NOT NULL, portion INTEGER NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
+                "time TEXT NOT NULL, cal INTEGER NOT NULL, portion INTEGER NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
         db.execSQL("CREATE TABLE myFavouriteRecipes ( _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, img TEXT NOT NULL, " +
-                "time REAL NOT NULL, cal INTEGER NOT NULL, portion INTEGER NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
+                "time TEXT NOT NULL, cal INTEGER NOT NULL, portion INTEGER NOT NULL, ingredients TEXT NOT NULL, cooking TEXT NOT NULL )");
     }
 
     @Override

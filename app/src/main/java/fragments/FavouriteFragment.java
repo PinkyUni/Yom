@@ -57,13 +57,13 @@ public class FavouriteFragment extends Fragment {
                     ex.printStackTrace();
                 }
             }
-            Float dbDuration = 0f;
+            String dbDuration = null;
             Integer dbCalories = 0;
             Integer dbPortions = 0;
             String[] arrIngredients = new String[0];
             String[] stepsArray = new String[0];
             if (!tableName.equals("main")) {
-                dbDuration = cursor.getFloat(cursor.getColumnIndex("time"));
+                dbDuration = cursor.getString(cursor.getColumnIndex("time"));
                 dbCalories = cursor.getInt(cursor.getColumnIndex("cal"));
                 dbPortions = cursor.getInt(cursor.getColumnIndex("portion"));
 
