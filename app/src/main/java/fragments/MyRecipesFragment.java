@@ -101,19 +101,17 @@ public class MyRecipesFragment extends Fragment {
         View view = null;
         mDBHelper = ((MainActivity) getActivity()).allRecipesFragment.getmDBHelper();
         mDb = mDBHelper.getWritableDatabase();
-//        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItem(-1);
+        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItem(3);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.app_name));
+        TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
+        toolbarTitle.setText(getActivity().getResources().getString(R.string.txt_my_recipes));
+        ((MainActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Cursor c = mDb.query("myRecipes", null, null, null, null, null, null);
         if (c.getCount() != 0) {
             if (c.moveToFirst()) {
-//                int nameColIndex = c.getColumnIndex("name");
                 view = inflater.inflate(R.layout.all_recipes_fragment, null);
                 myRecipes = new ArrayList<>();
-                ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItem(3);
-                TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
-                toolbarTitle.setText(getActivity().getResources().getString(R.string.txt_my_recipes));
-//                ((MainActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.txt_my_recipes));
-                ((MainActivity)getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
-                ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getDataFromDatabase("myRecipes", myRecipes);
                 recyclerView = view.findViewById(R.id.Recipes);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -124,9 +122,9 @@ public class MyRecipesFragment extends Fragment {
                         Recipe recipe = myAdapter.getItem(position);
                         RecipeFragment recipeFragment = new RecipeFragment();
                         recipeFragment.setRecipe(recipe);
-                        ((MainActivity) getActivity()).getSupportActionBar().setTitle(myAdapter.getItemName(position));
-                        ((MainActivity)getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_24dp);
-                        ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        ((MainActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.txt_my_recipes));
+                        ((MainActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_24dp);
+                        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                         fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.content_frame, recipeFragment);
                         fragmentTransaction.addToBackStack(null);
@@ -134,7 +132,6 @@ public class MyRecipesFragment extends Fragment {
                     }
                 });
                 recyclerView.setAdapter(myAdapter);
-//                Toast.makeText(getContext(), c.getString(nameColIndex), Toast.LENGTH_SHORT).show();
             }
             c.close();
         } else {

@@ -80,12 +80,9 @@ public class AddFragment extends Fragment {
 
     public void addMyRecipeDatabaseItem() {
         String dbName = txtName.getText().toString();
-        Float dbTime = 0f;
-        Integer dbCal = 0;
-        Integer dbPortions = 4;
-//        Integer dbTime = Integer.parseInt(txtTime.getText().toString());
-//        Integer dbCal = Integer.parseInt(txtCal.getText().toString());
-//        Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
+        Integer dbTime = Integer.parseInt(txtTime.getText().toString());
+        Integer dbCal = Integer.parseInt(txtCal.getText().toString());
+        Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
         String dbIngredients = txtIngredients.getText().toString();
         String dbCooking = txtCooking.getText().toString();
 

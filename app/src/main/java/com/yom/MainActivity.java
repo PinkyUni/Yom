@@ -2,8 +2,10 @@ package com.yom;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -16,8 +18,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -197,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
             } else {
                 super.onBackPressed();
-                if (allRecipesFragment.getCurrentMainItem() != 3)
+                if ((allRecipesFragment.getCurrentMainItem() != 3) && (allRecipesFragment.getCurrentMainItem() != 4))
                     allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
             }
         }
@@ -217,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                         allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                     } else {
                         super.onBackPressed();
-                        if (allRecipesFragment.getCurrentMainItem() != 3)
+                        if ((allRecipesFragment.getCurrentMainItem() != 3) && (allRecipesFragment.getCurrentMainItem() != 4))
                             allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
                     }
                     return true;
@@ -244,7 +250,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 addFragment.addMyRecipeDatabaseItem();
-//                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
+                mainViewModel.getCurrentFragment().setValue(3);
+                View v = getCurrentFocus();
+                if (v != null) {
+                    v.clearFocus();
+                }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                btnAdd.setVisible(false);
                 return false;
             }
         });

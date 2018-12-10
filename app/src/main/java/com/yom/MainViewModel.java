@@ -31,9 +31,9 @@ public class MainViewModel extends ViewModel {
             case R.id.nav_add:
                 curFragment = 5;
                 break;
-            case R.id.nav_settings:
-                curFragment = 6;
-                break;
+//            case R.id.nav_settings:
+//                curFragment = 6;
+//                break;
             case R.id.nav_about:
                 curFragment = 7;
                 break;
