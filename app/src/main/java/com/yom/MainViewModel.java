@@ -3,7 +3,6 @@ package com.yom;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.view.View;
 
 public class MainViewModel extends ViewModel {
 
@@ -19,9 +18,9 @@ public class MainViewModel extends ViewModel {
             case R.id.nav_recipes:
                 curFragment = 1;
                 break;
-            case R.id.nav_search:
-                curFragment = 2;
-                break;
+//            case R.id.nav_search:
+//                curFragment = 2;
+//                break;
             case R.id.nav_my_recipes:
                 curFragment = 3;
                 break;

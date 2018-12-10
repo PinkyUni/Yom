@@ -1,6 +1,5 @@
 package fragments;
 
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
@@ -14,15 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yom.DatabaseHelper;
 import com.yom.MainActivity;
 import com.yom.MyRecyclerViewAdapter;
 import com.yom.R;
 import com.yom.Recipe;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,18 +35,6 @@ public class MyRecipesFragment extends Fragment {
     public FragmentTransaction fragmentTransaction;
     private TextView emptyList;
     private ArrayList<Recipe> myRecipes;
-
-    public String getStringValue(String key) {
-        // Retrieve the resource id
-        String packageName = getContext().getPackageName();
-        Resources resources = getContext().getResources();
-        int stringId = resources.getIdentifier(key, "string", packageName);
-        if (stringId == 0) {
-            return null;
-        }
-        // Return the string value based on the res id
-        return resources.getString(stringId);
-    }
 
     public void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
         Cursor cursor = mDb.rawQuery("SELECT * FROM " + tableName, null);

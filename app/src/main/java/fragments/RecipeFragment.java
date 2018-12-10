@@ -165,7 +165,7 @@ public class RecipeFragment extends Fragment {
                     contentValues.put("ingredients", dbIngredients);
                     contentValues.put("cooking", dbCooking);
                     mDb.insert("myFavouriteRecipes", null, contentValues);
-                    Toast.makeText(getContext(), "done", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getActivity().getResources().getString(R.string.txt_added_to_faves), Toast.LENGTH_SHORT).show();
                 } else {
                     btnFav.setImageResource(R.drawable.ic_favorite_24dp);
                     mDb.delete("myFavouriteRecipes", "name = ?", new String[] {name});

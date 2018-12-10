@@ -67,6 +67,7 @@
     <string name="txt_hour">h</string>
     <string name="txt_min">min</string>
     <string name="portions">Portions</string>
+    <string name="txt_added_to_faves">Added to faves</string>
 
     <string name="title_ingredients">Ingredients</string>
     <string name="title_cooking">Cooking</string>
