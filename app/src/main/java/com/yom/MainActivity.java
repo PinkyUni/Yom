@@ -197,9 +197,11 @@ public class MainActivity extends AppCompatActivity {
                 allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
             } else {
                 super.onBackPressed();
-                allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
+                if (allRecipesFragment.getCurrentMainItem() != 3)
+                    allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
             }
         }
+
     }
 
     @Override
@@ -215,7 +217,8 @@ public class MainActivity extends AppCompatActivity {
                         allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                     } else {
                         super.onBackPressed();
-                        allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
+                        if (allRecipesFragment.getCurrentMainItem() != 3)
+                            allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
                     }
                     return true;
                 }

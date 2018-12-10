@@ -72,7 +72,7 @@ public class AllRecipesFragment extends Fragment {
         getDataFromDatabase("main", recipeBook);
     }
 
-    private void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
+    public void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
         Cursor cursor = mDb.rawQuery("SELECT * FROM " + tableName, null);
         while (cursor.moveToNext()) {
             Integer dbId = cursor.getInt(cursor.getColumnIndex("_id"));
@@ -145,6 +145,10 @@ public class AllRecipesFragment extends Fragment {
         return currentMainItem;
     }
 
+    public void setCurrentMainItem(int item) {
+        this.currentMainItem = item;
+    }
+
     public int getCurrentRecipe() {
         return currentRecipe;
     }
@@ -158,7 +162,6 @@ public class AllRecipesFragment extends Fragment {
     }
 
     public void setMainItem(int position) {
-//        TODO надо получать имя нажатого элемента и подгружать уже инфу из соответствующей таблицы бд
         currentMainItem = position;
         String curName = mainAdapter.getItem(position).getName();
         ArrayList<Recipe> arrayList = new ArrayList<>();
