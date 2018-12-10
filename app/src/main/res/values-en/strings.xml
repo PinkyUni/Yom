@@ -61,7 +61,7 @@
     <string name="chocolate_muffins_with_chocolate">Chocolate muffins</string>
     <string name="apple_muffins_with_oat">Apple muffins with spices and oatmeal</string>
 
-
+    <string name="name">Name</string>
     <string name="calories">Calories</string>
     <string name="time">Time</string>
     <string name="txt_hour">h</string>

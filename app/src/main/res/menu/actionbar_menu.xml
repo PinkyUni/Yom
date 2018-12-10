@@ -1,18 +1,11 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <!--<item-->
-        <!--android:id="@+id/menuPurchasesListNewRecord"-->
-        <!--android:orderInCategory="10"-->
-        <!--android:title="@string/title_brownies"-->
-        <!--android:icon="@drawable/ic_dining_24dp"-->
-        <!--app:showAsAction="always" />-->
-
-    <!--<item-->
-        <!--android:id="@+id/kek"-->
-        <!--android:orderInCategory="10"-->
-        <!--android:title="@string/title_brownies"-->
-        <!--android:icon="@drawable/ic_info_24dp"-->
-        <!--app:showAsAction="ifRoom" />-->
+    <item
+        android:id="@+id/btn_add"
+        android:orderInCategory="10"
+        android:title="@string/title_brownies"
+        android:icon="@drawable/ic_done_24dp"
+        app:showAsAction="always" />
 
 </menu>

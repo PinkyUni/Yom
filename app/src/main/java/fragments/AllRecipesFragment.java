@@ -50,7 +50,7 @@ public class AllRecipesFragment extends Fragment {
         actionbar = ((MainActivity) getActivity()).getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         recipeBook = new ArrayList<>();
-        mDBHelper = new DatabaseHelper(this.getContext());
+        mDBHelper = new DatabaseHelper(getContext());
         try {
             mDBHelper.updateDataBase();
         } catch (IOException mIOException) {
@@ -184,42 +184,6 @@ public class AllRecipesFragment extends Fragment {
         onChangeArrayList(arrayList, curName);
     }
 
-//    public void setMainItem(int position) {
-//        currentMainItem = position;
-//        switch (position) {
-//            case 0:
-//                cakeRecipes = new ArrayList<>();
-//                getDataFromDatabase("cakeRecipes", cakeRecipes);
-//                onChangeArrayList(cakeRecipes, getResources().getString(R.string.title_cakes));
-//                break;
-//            case 1:
-//                brownieRecipes = new ArrayList<>();
-//                getDataFromDatabase("brownieRecipes", brownieRecipes);
-//                onChangeArrayList(brownieRecipes, getResources().getString(R.string.title_brownies));
-//                break;
-//            case 2:
-//                pancakeRecipes = new ArrayList<>();
-//                getDataFromDatabase("pancakeRecipes", pancakeRecipes);
-//                onChangeArrayList(pancakeRecipes, getResources().getString(R.string.title_pancakes));
-//                break;
-//            case 3:
-//                cookieRecipes = new ArrayList<>();
-//                getDataFromDatabase("cookieRecipes", cookieRecipes);
-//                onChangeArrayList(cookieRecipes, getResources().getString(R.string.title_cookies));
-//                break;
-//            case 4:
-//                muffinRecipes = new ArrayList<>();
-//                getDataFromDatabase("muffinRecipes", muffinRecipes);
-//                onChangeArrayList(muffinRecipes, getResources().getString(R.string.title_muffins));
-//                break;
-//            case 5:
-//                waffleRecipes = new ArrayList<>();
-//                getDataFromDatabase("waffleRecipes", waffleRecipes);
-//                onChangeArrayList(waffleRecipes, getResources().getString(R.string.title_waffles));
-//                break;
-//        }
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -246,6 +210,7 @@ public class AllRecipesFragment extends Fragment {
             recyclerView.setAdapter(mainAdapter);
         } else {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_back_24dp);
+            actionbar.setDisplayHomeAsUpEnabled(true);
             adapter = new MyRecyclerViewAdapter(getActivity(), arrayList);
             adapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
                 @Override

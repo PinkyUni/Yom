@@ -14,9 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yom.databinding.ActivityMainBinding;
 
@@ -40,10 +43,11 @@ public class MainActivity extends AppCompatActivity {
     public MyRecipesFragment myRecipesFragment;
     public SearchFragment searchFragment;
     public FavouriteFragment favouriteFragment;
+    private MenuItem btnAdd;
 
     private DrawerLayout mDrawerLayout;
     public Toolbar toolbar;
-    public static Typeface typefaceRegular, typefaceMedium, typefaceBold;
+    public static Typeface typefaceRegular, typefaceMedium, typefaceBold, typefaceJura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         typefaceRegular = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Regular.ttf");
         typefaceMedium = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Medium.ttf");
         typefaceBold = Typeface.createFromAsset(getAssets(), "fonts/Podkova-Bold.ttf");
+        typefaceJura = Typeface.createFromAsset(getAssets(), "fonts/v.ttf");
+
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -159,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 addFragment = new AddFragment();
                 fragmentTransaction.replace(R.id.content_frame, addFragment);
                 toolbarTxt.setText(getResources().getString(R.string.txt_add_recipe));
+                btnAdd.setVisible(true);
                 break;
             case 6:
                 settingsFragment = new SettingsFragment();
@@ -224,10 +231,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
-        return true;
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        btnAdd = menu.findItem(R.id.btn_add).setVisible(false);
+        btnAdd.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                addFragment.addMyRecipeDatabaseItem();
+                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        return super.onPrepareOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_menu, menu);
+        return true;
+    }
 
 }

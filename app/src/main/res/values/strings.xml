@@ -58,7 +58,7 @@
     <string name="chocolate_muffins_with_chocolate">Шоколадные маффины</string>
     <string name="apple_muffins_with_oat">Маффины с яблоком, специями и овсянкой</string>
 
-
+    <string name="name">Название</string>
     <string name="calories">Калории</string>
     <string name="time">Время</string>
     <string name="txt_hour">ч</string>
