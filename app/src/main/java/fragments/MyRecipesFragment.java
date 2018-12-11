@@ -71,7 +71,7 @@ public class MyRecipesFragment extends Fragment {
                 arrIngredients = dbIngredients.split("\n");
 
                 String dbCooking = cursor.getString(cursor.getColumnIndex("cooking"));
-                stepsArray = dbCooking.split("\n");
+                 stepsArray = dbCooking.split("\n");
             }
             Recipe recipe = new Recipe(dbId, dbName, d, dbDuration, dbCalories, dbPortions, arrIngredients, stepsArray);
             arrayList.add(recipe);
@@ -85,7 +85,7 @@ public class MyRecipesFragment extends Fragment {
         View view = null;
         mDBHelper = ((MainActivity) getActivity()).allRecipesFragment.getmDBHelper();
         mDb = mDBHelper.getWritableDatabase();
-        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItem(3);
+        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItemId(3);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.app_name));
         TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
         toolbarTitle.setText(getActivity().getResources().getString(R.string.txt_my_recipes));
@@ -125,10 +125,6 @@ public class MyRecipesFragment extends Fragment {
             emptyList.setTypeface(typefaceRegular);
         }
         return view;
-    }
-
-    private void getMyRecipesFromDatabase() {
-
     }
 
 }

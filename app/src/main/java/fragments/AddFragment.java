@@ -41,6 +41,7 @@ public class AddFragment extends Fragment {
     private TextInputEditText txtName, txtIngredients, txtCooking;
     private EditText txtTime, txtCal, txtPortions;
     private static final int SELECT_PHOTO = 100;
+    private Uri selectedImageUri;
     private Bitmap bitmap;
 
     public boolean isEmptyEditText() {
@@ -120,6 +121,10 @@ public class AddFragment extends Fragment {
     public void addMyRecipeDatabaseItem() {
         String dbName = txtName.getText().toString();
         String dbTime = txtTime.getText().toString();
+        String dbImg = "empty_img.jpg";
+        if (selectedImagePath != null) {
+            dbImg = selectedImagePath;
+        }
         Integer dbCal = Integer.parseInt(txtCal.getText().toString());
         Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
         String dbIngredients = txtIngredients.getText().toString();
@@ -131,7 +136,7 @@ public class AddFragment extends Fragment {
         ContentValues contentValues = new ContentValues();
 //        contentValues.put("_id", 1);
         contentValues.put("name", dbName);
-        contentValues.put("img", "pies.jpg");
+        contentValues.put("img", dbImg);
         contentValues.put("time", dbTime);
         contentValues.put("cal", dbCal);
         contentValues.put("portion", dbPortions);
@@ -202,7 +207,7 @@ public class AddFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
-                Uri selectedImageUri = data.getData();
+                selectedImageUri = data.getData();
                 filemanagerstring = selectedImageUri.getPath();
                 selectedImagePath = getPath(selectedImageUri);
                 if (selectedImagePath != null)

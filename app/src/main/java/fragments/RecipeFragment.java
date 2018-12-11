@@ -1,10 +1,8 @@
 package fragments;
 
 import android.content.ContentValues;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +19,8 @@ import com.yom.DatabaseHelper;
 import com.yom.MainActivity;
 import com.yom.R;
 import com.yom.Recipe;
+
+import java.util.ArrayList;
 
 import static com.yom.MainActivity.typefaceJura;
 import static com.yom.MainActivity.typefaceMedium;
@@ -56,7 +56,7 @@ public class RecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recipe_fragment, null);
-        ImageView imageView = view.findViewById(R.id.img);
+        final ImageView imageView = view.findViewById(R.id.img);
         imageView.setImageDrawable(image);
         final TextView ingredientList = view.findViewById(R.id.ingredient_list);
 
@@ -137,22 +137,67 @@ public class RecipeFragment extends Fragment {
 
                 if (!recipeIsFavourite()) {
                     btnFav.setImageResource(R.drawable.ic_favorite_selected_24dp);
+                    int category = ((MainActivity) getActivity()).allRecipesFragment.getCurrentMainItemId();
+                    int recipeId = ((MainActivity) getActivity()).allRecipesFragment.getCurrentRecipe();
+//                    ((MainActivity) getActivity()).allRecipesFragment.getRecipeBook();
+//                    ArrayList<Recipe> arrayList = new ArrayList<>();
+                    String tableName = null;
+                    switch (category) {
+                        case 1:
+                            tableName = "cakeRecipes";
+                            break;
+                        case 2:
+                            tableName = "brownieRecipes";
+                            break;
+                        case 3:
+                            tableName = "pancakeRecipes";
+                            break;
+                        case 4:
+                            tableName = "cookieRecipes";
+                            break;
+                        case 5:
+                            tableName = "muffinRecipes";
+                            break;
+                        case 6:
+                            tableName = "waffleRecipes";
+                            break;
+                        case 7:
+                            tableName = "bunRecipes";
+                            break;
+                        case 8:
+                            tableName = "cheesecakeRecipes";
+                            break;
+                    }
+                    Cursor c = mDb.rawQuery("SELECT * FROM " + tableName + " WHERE _id = " + String.valueOf(recipeId), null);
+                    c.moveToFirst();
+//                    int idColIndex = c.getColumnIndex("_id");
+////                    if (c.getString(nameColIndex).equals(recipeId)) {
+//                    String dbName = c.getString(c.getColumnIndex("name"));
+                    String dbImg = c.getString(c.getColumnIndex("img"));
+//                    String dbTime = c.getString(c.getColumnIndex("time"));
+//                    Integer dbCal = c.getInt(c.getColumnIndex("cal"));
+//                    Integer dbPortions = c.getInt(c.getColumnIndex("portion"));
+//                    String dbIngredients = c.getString(c.getColumnIndex("ingredients"));
+//                    String dbCooking = c.getString(c.getColumnIndex("cooking"));
+//                    ContentValues contentValues = new ContentValues();
+//                    contentValues.put("name", dbName);
+//                    contentValues.put("img", dbImg);
+//                    contentValues.put("time", dbTime);
+//                    contentValues.put("cal", dbCal);
+//                    contentValues.put("portion", dbPortions);
+//                    contentValues.put("ingredients", dbIngredients);
+//                    contentValues.put("cooking", dbCooking);
+//                    mDb.insert("myFavouriteRecipes", null, contentValues);
+                    c.close();
                     String dbName = titleName.getText().toString();
                     String dbTime = time.getText().toString();
                     Integer dbCal = Integer.parseInt(cal.getText().toString());
                     Integer dbPortions = Integer.parseInt(portion.getText().toString());
-//                String dbIngredients = recipe.getIngredients();
                     String dbIngredients = ingredientList.getText().toString();
                     String dbCooking = cookingStepsList.getText().toString();
-//                String dbName = txtName.getText().toString();
-//                Integer dbTime = Integer.parseInt(txtTime.getText().toString());
-//                Integer dbCal = Integer.parseInt(txtCal.getText().toString());
-//                Integer dbPortions = Integer.parseInt(txtPortions.getText().toString());
-//                String dbIngredients = txtIngredients.getText().toString();
-//                String dbCooking = txtCooking.getText().toString();
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("name", dbName);
-                    contentValues.put("img", "pies.jpg");
+                    contentValues.put("img", dbImg);
                     contentValues.put("time", dbTime);
                     contentValues.put("cal", dbCal);
                     contentValues.put("portion", dbPortions);
@@ -162,7 +207,7 @@ public class RecipeFragment extends Fragment {
                     Toast.makeText(getContext(), getActivity().getResources().getString(R.string.txt_added_to_faves), Toast.LENGTH_SHORT).show();
                 } else {
                     btnFav.setImageResource(R.drawable.ic_favorite_24dp);
-                    mDb.delete("myFavouriteRecipes", "name = ?", new String[] {name});
+                    mDb.delete("myFavouriteRecipes", "name = ?", new String[]{name});
                 }
             }
         });

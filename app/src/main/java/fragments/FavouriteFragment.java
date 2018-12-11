@@ -85,7 +85,7 @@ public class FavouriteFragment extends Fragment {
         View view = null;
         mDBHelper = ((MainActivity) getActivity()).allRecipesFragment.getmDBHelper();
         mDb = mDBHelper.getWritableDatabase();
-        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItem(4);
+        ((MainActivity) getActivity()).allRecipesFragment.setCurrentMainItemId(4);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.app_name));
         TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
         toolbarTitle.setText(getActivity().getResources().getString(R.string.txt_favourite));

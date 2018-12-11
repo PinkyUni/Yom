@@ -1,11 +1,9 @@
 package com.yom;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "dbRecipeBook.db";
     private static String DB_PATH = "";
-    private static int DB_VERSION = 1;
+    private static int DB_VERSION = 3;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;

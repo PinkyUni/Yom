@@ -15,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.yom.DatabaseHelper;
 import com.yom.MainActivity;
@@ -41,7 +40,7 @@ public class AllRecipesFragment extends Fragment {
     private ActionBar actionbar;
 
     private int currentRecipe;
-    private int currentMainItem;
+    private int currentMainItemId, currentMainItem;
     private RecipeFragment recipeFragment;
 
     public final SQLiteDatabase getmDb() {
@@ -147,8 +146,12 @@ public class AllRecipesFragment extends Fragment {
         return currentMainItem;
     }
 
-    public void setCurrentMainItem(int item) {
-        this.currentMainItem = item;
+    public int getCurrentMainItemId() {
+        return currentMainItemId;
+    }
+
+    public void setCurrentMainItemId(int item) {
+        this.currentMainItemId = item;
     }
 
     public int getCurrentRecipe() {
@@ -165,6 +168,7 @@ public class AllRecipesFragment extends Fragment {
 
     public void setMainItem(int position) {
         currentMainItem = position;
+        currentMainItemId = recipeBook.get(position).getId();
         String curName = mainAdapter.getItem(position).getName();
         ArrayList<Recipe> arrayList = new ArrayList<>();
         switch (mainAdapter.getItem(position).getId()) {
@@ -186,12 +190,12 @@ public class AllRecipesFragment extends Fragment {
             case 6:
                 getDataFromDatabase("waffleRecipes", arrayList);
                 break;
-            case 7:
-                getDataFromDatabase("bunRecipes", arrayList);
-                break;
-            case 8:
-                getDataFromDatabase("cheesecakeRecipes", arrayList);
-                break;
+//            case 7:
+//                getDataFromDatabase("bunRecipes", arrayList);
+//                break;
+//            case 8:
+//                getDataFromDatabase("cheesecakeRecipes", arrayList);
+//                break;
         }
         toSort(arrayList);
         onChangeArrayList(arrayList, curName);
@@ -207,7 +211,7 @@ public class AllRecipesFragment extends Fragment {
         mainAdapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                currentMainItem = position;
+                currentMainItemId = position;
                 setMainItem(position);
             }
         });
@@ -216,7 +220,7 @@ public class AllRecipesFragment extends Fragment {
         return view;
     }
 
-    public void onChangeArrayList(ArrayList<Recipe> arrayList, String title) {
+    public void onChangeArrayList(final ArrayList<Recipe> arrayList, String title) {
         actionbar.setTitle(title);
 //        ((MainActivity)getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.app_name));
 //        TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
@@ -231,8 +235,9 @@ public class AllRecipesFragment extends Fragment {
             adapter.setClickListener(new MyRecyclerViewAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    currentRecipe = position;
+//                    currentRecipe = arrayList.get(position).getId();
                     Recipe recipe = adapter.getItem(position);
+                    currentRecipe = adapter.getItem(position).getId();
                     recipeFragment.setRecipe(recipe);
                     actionbar.setTitle(adapter.getItemName(position));
                     fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
