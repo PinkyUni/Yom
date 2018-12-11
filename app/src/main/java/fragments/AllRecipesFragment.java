@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.yom.DatabaseHelper;
 import com.yom.MainActivity;
@@ -70,6 +71,7 @@ public class AllRecipesFragment extends Fragment {
             throw mSQLException;
         }
         getDataFromDatabase("main", recipeBook);
+        toSort(recipeBook);
     }
 
     public void getDataFromDatabase(String tableName, ArrayList<Recipe> arrayList) {
@@ -216,6 +218,9 @@ public class AllRecipesFragment extends Fragment {
 
     public void onChangeArrayList(ArrayList<Recipe> arrayList, String title) {
         actionbar.setTitle(title);
+//        ((MainActivity)getActivity()).getSupportActionBar().setTitle(getActivity().getResources().getString(R.string.app_name));
+//        TextView toolbarTitle = (TextView) ((MainActivity) getActivity()).toolbar.getChildAt(0);
+//        toolbarTitle.setText(title);
         if (title.equals(getResources().getString(R.string.app_name))) {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
             recyclerView.setAdapter(mainAdapter);

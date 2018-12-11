@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yom.databinding.ActivityMainBinding;
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public MyRecipesFragment myRecipesFragment;
     public SearchFragment searchFragment;
     public FavouriteFragment favouriteFragment;
-    private MenuItem btnAdd;
+    public MenuItem btnAdd;
     private NavigationView navigationView;
 
     private DrawerLayout mDrawerLayout;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(typefaceBold);
         textView.setTextSize(24);
 //
-         navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         TextView personName = headerView.findViewById(R.id.txt_person);
         personName.setText(R.string.person_name);
@@ -142,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onChangeFragment() {
+        if (btnAdd != null) {
+            btnAdd.setVisible(false);
+        }
         int currentFragment = mainViewModel.getCurrentFragment().getValue();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         TextView toolbarTxt = (TextView) toolbar.getChildAt(0);
@@ -195,10 +199,9 @@ public class MainActivity extends AppCompatActivity {
             if (relatedToMainRecipes()) {
                 allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                 allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentMainItem());
-                allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
             } else {
                 super.onBackPressed();
-                if ((allRecipesFragment.getCurrentMainItem() != 3) && (allRecipesFragment.getCurrentMainItem() != 4))
+                if ((mainViewModel.getCurrentFragment().getValue() != 3) && (mainViewModel.getCurrentFragment().getValue() != 4))
                     allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
             }
         }
@@ -215,10 +218,9 @@ public class MainActivity extends AppCompatActivity {
                     if (relatedToMainRecipes()) {
                         allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                         allRecipesFragment.getRecyclerView().getLayoutManager().scrollToPosition(allRecipesFragment.getCurrentMainItem());
-                        allRecipesFragment.onChangeArrayList(allRecipesFragment.getRecipeBook(), getResources().getString(R.string.app_name));
                     } else {
                         super.onBackPressed();
-                        if ((allRecipesFragment.getCurrentMainItem() != 3) && (allRecipesFragment.getCurrentMainItem() != 4))
+                        if ((mainViewModel.getCurrentFragment().getValue() != 3) && (mainViewModel.getCurrentFragment().getValue() != 4))
                             allRecipesFragment.setMainItem(allRecipesFragment.getCurrentMainItem());
                     }
                     return true;
@@ -244,16 +246,21 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                addFragment.addMyRecipeDatabaseItem();
-                navigationView.setCheckedItem(R.id.nav_my_recipes);
-                mainViewModel.getCurrentFragment().setValue(3);
-                View v = getCurrentFocus();
-                if (v != null) {
-                    v.clearFocus();
+                if (addFragment.isEmptyEditText()) {
+                    addFragment.setFocusOnEmptyEdit();
+                } else {
+                    Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+                    addFragment.addMyRecipeDatabaseItem();
+                    navigationView.setCheckedItem(R.id.nav_my_recipes);
+                    mainViewModel.getCurrentFragment().setValue(3);
+                    View v = getCurrentFocus();
+                    if (v != null) {
+                        v.clearFocus();
+                    }
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    btnAdd.setVisible(false);
                 }
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                btnAdd.setVisible(false);
                 return false;
             }
         });
